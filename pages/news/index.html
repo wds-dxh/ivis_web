@@ -3,190 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新闻中心 - 实验室网站</title>
+    <title>新闻中心 - 智能网联汽车安全实验室 (ivis)</title>
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/navigation.css">
     <style>
         /* 新闻中心页面特定样式 */
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
+        .publication-list {
+            margin-bottom: 4rem;
         }
         
-        .news-card {
-            background-color: var(--card-background);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            transition: transform var(--transition-speed);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
+        .publication-year {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
         }
         
-        .news-card:hover {
-            transform: translateY(-5px);
+        .publication-item {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
         }
         
-        .news-image {
-            height: 200px;
-            overflow: hidden;
+        .publication-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
         }
         
-        .news-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
+        .publication-authors {
+            margin-bottom: 0.5rem;
+            color: #444;
         }
         
-        .news-card:hover .news-image img {
-            transform: scale(1.05);
+        .publication-journal {
+            font-style: italic;
+            margin-bottom: 0.5rem;
         }
         
-        .news-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .news-meta {
+        .publication-meta {
             display: flex;
             justify-content: space-between;
             color: #666;
-            font-size: 0.8rem;
-            margin-bottom: 0.8rem;
-        }
-        
-        .news-category {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.2rem 0.6rem;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            display: inline-block;
-        }
-        
-        .news-title {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-        
-        .news-excerpt {
-            color: #555;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-        
-        /* 新闻过滤和搜索 */
-        .news-filters {
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background-color: var(--card-background);
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-        }
-        
-        .filter-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .filter-group {
-            display: flex;
-            align-items: center;
-        }
-        
-        .filter-label {
-            margin-right: 0.5rem;
-            font-weight: 500;
-        }
-        
-        .filter-options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        
-        .filter-option {
-            background-color: #f0f0f0;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
             font-size: 0.9rem;
-            cursor: pointer;
-            transition: all var(--transition-speed);
         }
         
-        .filter-option:hover, .filter-option.active {
-            background-color: var(--primary-color);
-            color: white;
-        }
-        
-        .search-row {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .search-input {
-            flex-grow: 1;
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-        
-        .search-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 0.5rem 1.5rem;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color var(--transition-speed);
-        }
-        
-        .search-btn:hover {
-            background-color: var(--secondary-color);
-        }
-        
-        /* 分页导航 */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 3rem;
-            gap: 0.5rem;
-        }
-        
-        .page-item {
-            width: 40px;
-            height: 40px;
+        .publication-citations {
             display: flex;
             align-items: center;
-            justify-content: center;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all var(--transition-speed);
+            gap: 0.3rem;
         }
         
-        .page-item:hover, .page-item.active {
-            background-color: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
+        .publication-citations::before {
+            content: '📄';
         }
         
-        @media (max-width: 768px) {
-            .news-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .filter-row, .search-row {
-                flex-direction: column;
-            }
+        .book-section {
+            background-color: var(--card-background);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+        }
+        
+        .book-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -195,11 +77,11 @@
         <nav id="main-nav">
             <div class="nav-container">
                 <div class="logo">
-                    <a href="../../index.html">实验室名称</a>
+                    <a href="../../index.html">智能网联汽车安全实验室 (ivis)</a>
                 </div>
                 <ul class="nav-links">
                     <li><a href="../../index.html">首页</a></li>
-                    <li><a href="../research/index.html">科研成果</a></li>
+                    <li><a href="../research/index.html">科研动态</a></li>
                     <li><a href="../communication/index.html">开放交流</a></li>
                     <li><a href="index.html" class="active">新闻中心</a></li>
                     <li><a href="../directions/index.html">研究方向</a></li>
@@ -212,142 +94,187 @@
         <section class="hero">
             <div class="container">
                 <h1>新闻中心</h1>
-                <p>了解我们的最新动态、科研进展和学术成果</p>
+                <p>了解我们的最新论文、专利和出版书籍</p>
             </div>
         </section>
 
-        <section class="news">
+        <section class="publications">
             <div class="container">
-                <div class="news-filters">
-                    <div class="filter-row">
-                        <div class="filter-group">
-                            <span class="filter-label">类别:</span>
-                            <div class="filter-options">
-                                <span class="filter-option active">全部</span>
-                                <span class="filter-option">论文发表</span>
-                                <span class="filter-option">专利授权</span>
-                                <span class="filter-option">实验室动态</span>
-                                <span class="filter-option">学术活动</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filter-row">
-                        <div class="filter-group">
-                            <span class="filter-label">年份:</span>
-                            <div class="filter-options">
-                                <span class="filter-option active">全部</span>
-                                <span class="filter-option">2023</span>
-                                <span class="filter-option">2022</span>
-                                <span class="filter-option">2021</span>
-                                <span class="filter-option">2020</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="search-row">
-                        <input type="text" class="search-input" placeholder="搜索新闻...">
-                        <button class="search-btn">搜索</button>
-                    </div>
-                </div>
-                
-                <div class="news-grid">
-                    <div class="news-card">
-                        <div class="news-image">
-                            <img src="../../assets/images/news1.jpg" alt="新闻1">
-                        </div>
-                        <div class="news-content">
-                            <div class="news-meta">
-                                <span class="news-date">2023-11-20</span>
-                                <span class="news-category">论文发表</span>
-                            </div>
-                            <h3 class="news-title">实验室最新研究成果发表在顶级期刊</h3>
-                            <p class="news-excerpt">我们实验室的最新研究成果"XXXX"近日发表在XXXX期刊。该成果在XXXX领域取得了突破性进展，得到了学术界的广泛关注...</p>
-                            <a href="news1.html" class="btn">阅读全文</a>
-                        </div>
-                    </div>
-                    
-                    <div class="news-card">
-                        <div class="news-image">
-                            <img src="../../assets/images/news2.jpg" alt="新闻2">
-                        </div>
-                        <div class="news-content">
-                            <div class="news-meta">
-                                <span class="news-date">2023-10-15</span>
-                                <span class="news-category">专利授权</span>
-                            </div>
-                            <h3 class="news-title">实验室获得三项国家发明专利授权</h3>
-                            <p class="news-excerpt">近日，我们实验室在XXXX领域的研究成果获得了三项国家发明专利授权。这些专利涉及XXXX技术，有望应用于XXXX领域...</p>
-                            <a href="news2.html" class="btn">阅读全文</a>
-                        </div>
-                    </div>
-                    
-                    <div class="news-card">
-                        <div class="news-image">
-                            <img src="../../assets/images/news3.jpg" alt="新闻3">
-                        </div>
-                        <div class="news-content">
-                            <div class="news-meta">
-                                <span class="news-date">2023-09-28</span>
-                                <span class="news-category">实验室动态</span>
-                            </div>
-                            <h3 class="news-title">实验室迎来国际交流学者访问</h3>
-                            <p class="news-excerpt">本周，来自XXXX大学的XXXX教授访问了我们实验室，并与实验室成员进行了深入交流。双方就XXXX研究领域的最新进展展开讨论...</p>
-                            <a href="news3.html" class="btn">阅读全文</a>
-                        </div>
-                    </div>
-                    
-                    <div class="news-card">
-                        <div class="news-image">
-                            <img src="../../assets/images/news4.jpg" alt="新闻4">
-                        </div>
-                        <div class="news-content">
-                            <div class="news-meta">
-                                <span class="news-date">2023-09-10</span>
-                                <span class="news-category">学术活动</span>
-                            </div>
-                            <h3 class="news-title">实验室成功举办学术研讨会</h3>
-                            <p class="news-excerpt">我们实验室于上周成功举办了主题为"XXXX"的学术研讨会。来自XXXX等多家单位的学者参会并分享了各自领域的最新研究成果...</p>
-                            <a href="news4.html" class="btn">阅读全文</a>
-                        </div>
-                    </div>
-                    
-                    <div class="news-card">
-                        <div class="news-image">
-                            <img src="../../assets/images/news5.jpg" alt="新闻5">
-                        </div>
-                        <div class="news-content">
-                            <div class="news-meta">
-                                <span class="news-date">2023-08-25</span>
-                                <span class="news-category">论文发表</span>
-                            </div>
-                            <h3 class="news-title">实验室博士生在国际会议发表论文</h3>
-                            <p class="news-excerpt">实验室博士生XXXX在XXXX国际会议上发表了题为"XXXX"的论文，该论文提出了XXXX方法，获得了与会专家的高度评价...</p>
-                            <a href="news5.html" class="btn">阅读全文</a>
-                        </div>
-                    </div>
-                    
-                    <div class="news-card">
-                        <div class="news-image">
-                            <img src="../../assets/images/news6.jpg" alt="新闻6">
-                        </div>
-                        <div class="news-content">
-                            <div class="news-meta">
-                                <span class="news-date">2023-08-05</span>
-                                <span class="news-category">实验室动态</span>
-                            </div>
-                            <h3 class="news-title">实验室引进最新研究设备</h3>
-                            <p class="news-excerpt">为提升实验室的研究能力，我们近期引进了XXXX设备。该设备具有XXXX等先进功能，将显著提升我们在XXXX领域的研究能力...</p>
-                            <a href="news6.html" class="btn">阅读全文</a>
+                <div class="book-section">
+                    <h2 class="book-title">出版书籍</h2>
+                    <div class="publication-item">
+                        <div class="publication-title">Frontiers in Hardware Security and Trust</div>
+                        <div class="publication-authors">章节作者: Ning Wang, Long Jiao, Jie Tang, and Kai Zeng</div>
+                        <div class="publication-journal">章节: "Physical Layer Security for mmWave Massive MIMO Communications in 5G Networks"</div>
+                        <div class="publication-meta">
+                            <span>出版社: IET</span>
+                            <span>年份: 2020</span>
                         </div>
                     </div>
                 </div>
                 
-                <div class="pagination">
-                    <span class="page-item active">1</span>
-                    <span class="page-item">2</span>
-                    <span class="page-item">3</span>
-                    <span class="page-item">4</span>
-                    <span class="page-item">5</span>
-                    <span class="page-item">></span>
+                <div class="publication-list">
+                    <h2 class="publication-year">2024</h2>
+                    
+                    <div class="publication-item">
+                        <div class="publication-title">Efficient Group Key Generation Based on Satellite Cluster State Information for Drone Swarm</div>
+                        <div class="publication-authors">Ning Wang, Jixuan Duan, Biwen Chen, Shangwei Guo, Tao Xiang and Kai Zeng</div>
+                        <div class="publication-journal">IEEE Transactions on Information Forensics and Security (TIFS)</div>
+                        <div class="publication-meta">
+                            <span>中科院一区, CCF：A</span>
+                        </div>
+                    </div>
+                    
+                    <div class="publication-item">
+                        <div class="publication-title">DeGKM: Decentralized Group Key Management for Content Push in Integrated Networks</div>
+                        <div class="publication-authors">Gao Liu, Hao Li, Ning Wang*, Tao Xiang, Yining Liu</div>
+                        <div class="publication-journal">IEEE Transactions on Dependable and Secure Computing (TDSC)</div>
+                        <div class="publication-meta">
+                            <span>通信作者，中科院一区, CCF：A</span>
+                        </div>
+                    </div>
+                    
+                    <div class="publication-item">
+                        <div class="publication-title">Efﬁcient and Secure Aggregation Framework for Federated Learning-Based Spectrum Sharing</div>
+                        <div class="publication-authors">Weiwei Li, Guorong Chen, Xianming Zhang, Ning Wang*</div>
+                        <div class="publication-journal">IEEE Internet of Things Journal</div>
+                        <div class="publication-meta">
+                            <span>通信作者, 中科院一区</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="publication-list">
+                    <h2 class="publication-year">2023</h2>
+                    
+                    <div class="publication-item">
+                        <div class="publication-title">Visual commonsense-aware representation network for video captioning</div>
+                        <div class="publication-authors">P Zeng, H Zhang, L Gao, X Li, J Qian, HT Shen</div>
+                        <div class="publication-journal">IEEE Transactions on Neural Networks and Learning Systems</div>
+                        <div class="publication-meta">
+                            <span class="publication-citations">引用: 20</span>
+                        </div>
+                    </div>
+                    
+                    <div class="publication-item">
+                        <div class="publication-title">Privacy-Preserving Machine Learning as a Service: Challenges and Opportunities</div>
+                        <div class="publication-authors">Qiao Zhang, Tao Xiang, Yifei Cai, Zhichao Zhao, Ning Wang*, Hongyi Wu</div>
+                        <div class="publication-journal">IEEE Network</div>
+                        <div class="publication-meta">
+                            <span>中科院一区</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="publication-list">
+                    <h2 class="publication-year">2022</h2>
+                    
+                    <div class="publication-item">
+                        <div class="publication-title">Relation-aware aggregation network with auxiliary guidance for text-based person search</div>
+                        <div class="publication-authors">P Zeng, S Jing, J Song, K Fan, X Li, L We, Y Guo</div>
+                        <div class="publication-journal">World Wide Web, 1-18</div>
+                        <div class="publication-meta">
+                            <span class="publication-citations">引用: 6</span>
+                        </div>
+                    </div>
+                    
+                    <div class="publication-item">
+                        <div class="publication-title">You should know more: Learning external knowledge for visual dialog</div>
+                        <div class="publication-authors">L Zhao, H Zhang, X Li, S Yang, Y Song</div>
+                        <div class="publication-journal">Neurocomputing 488, 54-65</div>
+                        <div class="publication-meta">
+                            <span class="publication-citations">引用: 3</span>
+                        </div>
+                    </div>
+                    
+                    <div class="publication-item">
+                        <div class="publication-title">Text-instance graph: Exploring the relational semantics for text-based visual question answering</div>
+                        <div class="publication-authors">X Li, B Wu, J Song, L Gao, P Zeng, C Gan</div>
+                        <div class="publication-journal">Pattern Recognition 124, 108455</div>
+                        <div class="publication-meta">
+                            <span class="publication-citations">引用: 34</span>
+                        </div>
+                    </div>
+                    
+                    <div class="publication-item">
+                        <div class="publication-title">Scenario-aware recurrent transformer for goal-directed video captioning</div>
+                        <div class="publication-authors">X Man, D Ouyang, X Li, J Song, J Shao</div>
+                        <div class="publication-journal">ACM Transactions on Multimedia Computing, Communications, and Applications</div>
+                        <div class="publication-meta">
+                            <span class="publication-citations">引用: 32</span>
+                        </div>
+                    </div>
+                    
+                    <div class="publication-item">
+                        <div class="publication-title">Orientation and Channel-Independent RF Fingerprinting for 5G IEEE 802.11ad Devices</div>
+                        <div class="publication-authors">Ning Wang, Weiwei Li, Long Jiao, Amir Alipour-Fanid, Tao Xiang, and Kai Zeng</div>
+                        <div class="publication-journal">IEEE Internet of Things Journal</div>
+                        <div class="publication-meta">
+                            <span>中科院一区</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="publication-list">
+                    <h2 class="publication-year">2021</h2>
+                    
+                    <div class="publication-item">
+                        <div class="publication-title">Generalized pyramid co-attention with learnable aggregation net for video question answering</div>
+                        <div class="publication-authors">L Gao, T Chen, X Li, P Zeng, L Zhao, YF Li</div>
+                        <div class="publication-journal">Pattern Recognition 120, 108145</div>
+                        <div class="publication-meta">
+                            <span class="publication-citations">引用: 9</span>
+                        </div>
+                    </div>
+                    
+                    <div class="publication-item">
+                        <div class="publication-title">Exploring contextual-aware representation and linguistic-diverse expression for visual dialog</div>
+                        <div class="publication-authors">X Li, L Gao, L Zhao, J Song</div>
+                        <div class="publication-journal">Proceedings of the 29th ACM International Conference on Multimedia, 4911-4919</div>
+                        <div class="publication-meta">
+                            <span class="publication-citations">引用: 4</span>
+                        </div>
+                    </div>
+                    
+                    <div class="publication-item">
+                        <div class="publication-title">Exploiting Beam Features for Spoofing Attack Detection in MmWave 60GHz IEEE 802.11ad Networks</div>
+                        <div class="publication-authors">Ning Wang, Long Jiao, Pu Wang, and Kai Zeng</div>
+                        <div class="publication-journal">IEEE Transactions on Wireless Communication (TWC)</div>
+                        <div class="publication-meta">
+                            <span>CCF：B</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="publication-list">
+                    <h2 class="publication-year">2020</h2>
+                    
+                    <div class="publication-item">
+                        <div class="publication-title">Rich visual knowledge-based augmentation network for visual question answering</div>
+                        <div class="publication-authors">L Zhang, S Liu, D Liu, P Zeng, X Li, J Song, L Gao</div>
+                        <div class="publication-journal">IEEE Transactions on Neural Networks and Learning Systems 32 (10), 4362-4373</div>
+                        <div class="publication-meta">
+                            <span class="publication-citations">引用: 69</span>
+                        </div>
+                    </div>
+                    
+                    <div class="publication-item">
+                        <div class="publication-title">Physical Layer Authentication for 5G Communications: Opportunities and Road Ahead</div>
+                        <div class="publication-authors">Ning Wang, Weiwei Li, Pu Wang, Amir Alipour-Fanid, Long Jiao and Kai Zeng</div>
+                        <div class="publication-journal">IEEE Networks Magazine</div>
+                        <div class="publication-meta">
+                            <span>中科院一区</span>
+                        </div>
+                    </div>
+                    
+                    <div class="publication-item">
+                        <div class="publication-title">Pilot Contamination Attack Detection for 5G MmWave Grant-Free IoT Networks</div>
+                        <div class="publication-authors">Ning Wang, Weiwei Li, Amir Alipour-Fanid, Long Jiao, and Kai Zeng</div>
+                        <div class="publication-journal">IEEE Transactions on Information Forensics and Security (TIFS)</div>
+                        <div class="publication-meta">
+                            <span>中科院一区, CCF：A</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -358,15 +285,15 @@
             <div class="footer-content">
                 <div class="footer-info">
                     <h3>联系我们</h3>
-                    <p>地址：XX省XX市XX区XX路XX号</p>
-                    <p>电话：+86 XXX XXXX XXXX</p>
-                    <p>邮箱：example@university.edu.cn</p>
+                    <p>地址：重庆市渝北区两江大道9号-科研楼B205</p>
+                    <p>电话：023-67952817</p>
+                    <p>邮箱：xiangpengli.cs@gmail.com</p>
                 </div>
                 <div class="footer-links">
                     <h3>快速链接</h3>
                     <ul>
                         <li><a href="../../index.html">首页</a></li>
-                        <li><a href="../research/index.html">科研成果</a></li>
+                        <li><a href="../research/index.html">科研动态</a></li>
                         <li><a href="../communication/index.html">开放交流</a></li>
                         <li><a href="index.html">新闻中心</a></li>
                         <li><a href="../directions/index.html">研究方向</a></li>
@@ -374,65 +301,11 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 实验室名称. 保留所有权利.</p>
+                <p>&copy; 2023 智能网联汽车安全实验室 (ivis). 保留所有权利.</p>
             </div>
         </div>
     </footer>
 
     <script src="../../js/main.js"></script>
-    <script>
-        // 新闻筛选功能
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterOptions = document.querySelectorAll('.filter-option');
-            
-            filterOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    // 同组内取消其他选项的激活状态
-                    const filterGroup = this.closest('.filter-group');
-                    filterGroup.querySelectorAll('.filter-option').forEach(opt => {
-                        opt.classList.remove('active');
-                    });
-                    // 激活当前选项
-                    this.classList.add('active');
-                    
-                    // 在实际应用中，这里可以添加AJAX请求或数据筛选逻辑
-                    // 这里只做简单演示
-                    console.log('筛选条件:', this.textContent);
-                });
-            });
-            
-            // 搜索功能
-            const searchBtn = document.querySelector('.search-btn');
-            const searchInput = document.querySelector('.search-input');
-            
-            searchBtn.addEventListener('click', function() {
-                const searchValue = searchInput.value.trim();
-                if (searchValue) {
-                    // 在实际应用中，这里可以添加搜索逻辑
-                    console.log('搜索关键词:', searchValue);
-                }
-            });
-            
-            // 分页功能
-            const pageItems = document.querySelectorAll('.page-item');
-            
-            pageItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    // 取消其他页码的激活状态
-                    pageItems.forEach(p => p.classList.remove('active'));
-                    // 激活当前页码
-                    this.classList.add('active');
-                    
-                    // 在实际应用中，这里可以添加页面切换逻辑
-                    // 这里只做简单演示
-                    if (this.textContent !== '>') {
-                        console.log('切换到页码:', this.textContent);
-                    } else {
-                        console.log('下一页');
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 </html> 

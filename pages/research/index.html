@@ -3,20 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>科研成果 - 实验室网站</title>
+    <title>科研动态 - 智能网联汽车安全实验室 (ivis)</title>
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/navigation.css">
+    <style>
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .research-card {
+            background-color: var(--card-background);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .research-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .research-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .research-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .video-indicator::before {
+            content: '▶';
+            margin-right: 5px;
+            font-size: 0.8rem;
+        }
+        
+        .research-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .research-title {
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+        
+        .research-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .research-description {
+            color: #555;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 768px) {
+            .research-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav id="main-nav">
             <div class="nav-container">
                 <div class="logo">
-                    <a href="../../index.html">实验室名称</a>
+                    <a href="../../index.html">智能网联汽车安全实验室 (ivis)</a>
                 </div>
                 <ul class="nav-links">
                     <li><a href="../../index.html">首页</a></li>
-                    <li><a href="index.html" class="active">科研成果</a></li>
+                    <li><a href="index.html" class="active">科研动态</a></li>
                     <li><a href="../communication/index.html">开放交流</a></li>
                     <li><a href="../news/index.html">新闻中心</a></li>
                     <li><a href="../directions/index.html">研究方向</a></li>
@@ -28,50 +116,99 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h1>科研成果</h1>
-                <p>展示我们实验室的最新研究成果和实物演示</p>
+                <h1>科研动态</h1>
+                <p>展示我们实验室的最新研究Demo和技术演示</p>
             </div>
         </section>
 
-        <section class="achievements">
+        <section class="research-updates">
             <div class="container">
-                <h2>研究成果展示</h2>
-                <div class="achievements-grid">
-                    <div class="achievement-card">
-                        <img src="../../assets/images/achievement1.jpg" alt="成果1">
-                        <h3>成果标题1</h3>
-                        <p>这里是对科研成果的简短介绍，包括这项成果的主要内容和意义。</p>
-                        <a href="achievement1.html" class="btn">查看详情</a>
+                <div class="research-grid">
+                    <div class="research-card">
+                        <div class="research-image">
+                            <img src="../../assets/images/video-thumbnail1.jpg" alt="智能座舱与AR-HUD驾驶辅助系统演示">
+                            <div class="video-indicator">视频演示</div>
+                        </div>
+                        <div class="research-content">
+                            <h3 class="research-title">智能座舱与AR-HUD驾驶辅助系统</h3>
+                            <div class="research-meta">
+                                <span>2023-12-15</span>
+                            </div>
+                            <p class="research-description">该系统通过AR眼镜技术与车载信息显示系统相结合，为驾驶者提供实时的导航、车道保持、前车距离等关键信息，提升驾驶安全性和便捷性。</p>
+                            <a href="demo1.html" class="btn">查看详情</a>
+                        </div>
                     </div>
-                    <div class="achievement-card">
-                        <img src="../../assets/images/achievement2.jpg" alt="成果2">
-                        <h3>成果标题2</h3>
-                        <p>这里是对科研成果的简短介绍，包括这项成果的主要内容和意义。</p>
-                        <a href="achievement2.html" class="btn">查看详情</a>
+                    
+                    <div class="research-card">
+                        <div class="research-image">
+                            <img src="../../assets/images/video-thumbnail2.jpg" alt="具身智能底盘技术演示">
+                            <div class="video-indicator">视频演示</div>
+                        </div>
+                        <div class="research-content">
+                            <h3 class="research-title">具身智能底盘技术</h3>
+                            <div class="research-meta">
+                                <span>2023-11-20</span>
+                            </div>
+                            <p class="research-description">基于大模型技术的具身智能底盘，实现语音控制与物体识别抓取功能。演示系统能够根据语音指令自主导航，识别并抓取指定物体。</p>
+                            <a href="demo2.html" class="btn">查看详情</a>
+                        </div>
                     </div>
-                    <div class="achievement-card">
-                        <img src="../../assets/images/achievement3.jpg" alt="成果3">
-                        <h3>成果标题3</h3>
-                        <p>这里是对科研成果的简短介绍，包括这项成果的主要内容和意义。</p>
-                        <a href="achievement3.html" class="btn">查看详情</a>
+                    
+                    <div class="research-card">
+                        <div class="research-image">
+                            <img src="../../assets/images/hardware-security-demo.jpg" alt="TSN指纹加密演示系统">
+                        </div>
+                        <div class="research-content">
+                            <h3 class="research-title">TSN指纹加密演示系统</h3>
+                            <div class="research-meta">
+                                <span>2023-10-25</span>
+                            </div>
+                            <p class="research-description">展示具有唯一性、抗干扰能力强的硬件加密技术，通过硬件化和小型化设计实现车载环境的高效安全部署，确保车辆核心数据安全。</p>
+                            <a href="hardware-demo.html" class="btn">查看详情</a>
+                        </div>
                     </div>
-                    <div class="achievement-card">
-                        <img src="../../assets/images/achievement4.jpg" alt="成果4">
-                        <h3>成果标题4</h3>
-                        <p>这里是对科研成果的简短介绍，包括这项成果的主要内容和意义。</p>
-                        <a href="achievement4.html" class="btn">查看详情</a>
+                    
+                    <div class="research-card">
+                        <div class="research-image">
+                            <img src="../../assets/images/embodied-demo.jpg" alt="自主导航具身智能底盘">
+                        </div>
+                        <div class="research-content">
+                            <h3 class="research-title">自主导航具身智能底盘</h3>
+                            <div class="research-meta">
+                                <span>2023-09-18</span>
+                            </div>
+                            <p class="research-description">展示具有外观专利的智能底盘原型，支持语音指令控制，能够完成自主导航和物体抓取任务，为智能网联汽车提供底层技术支持。</p>
+                            <a href="embodied-demo.html" class="btn">查看详情</a>
+                        </div>
                     </div>
-                    <div class="achievement-card">
-                        <img src="../../assets/images/achievement5.jpg" alt="成果5">
-                        <h3>成果标题5</h3>
-                        <p>这里是对科研成果的简短介绍，包括这项成果的主要内容和意义。</p>
-                        <a href="achievement5.html" class="btn">查看详情</a>
+                    
+                    <div class="research-card">
+                        <div class="research-image">
+                            <img src="../../assets/images/ar-hud-demo.jpg" alt="AR-HUD驾驶辅助系统">
+                        </div>
+                        <div class="research-content">
+                            <h3 class="research-title">AR-HUD驾驶辅助系统</h3>
+                            <div class="research-meta">
+                                <span>2023-08-05</span>
+                            </div>
+                            <p class="research-description">基于ROS平台开发的AR-HUD系统，支持实时路况识别、导航信息显示和驾驶辅助功能，通过增强现实技术提升驾驶安全性。</p>
+                            <a href="ar-hud-demo.html" class="btn">查看详情</a>
+                        </div>
                     </div>
-                    <div class="achievement-card">
-                        <img src="../../assets/images/achievement6.jpg" alt="成果6">
-                        <h3>成果标题6</h3>
-                        <p>这里是对科研成果的简短介绍，包括这项成果的主要内容和意义。</p>
-                        <a href="achievement6.html" class="btn">查看详情</a>
+                    
+                    <div class="research-card">
+                        <div class="research-image">
+                            <img src="../../assets/images/defense-demo.jpg" alt="无人机协同通信系统">
+                            <div class="video-indicator">视频演示</div>
+                        </div>
+                        <div class="research-content">
+                            <h3 class="research-title">无人机协同通信系统</h3>
+                            <div class="research-meta">
+                                <span>2023-07-12</span>
+                            </div>
+                            <p class="research-description">面向国防安全的无人机协同通信技术，支持多无人机编队飞行和安全数据传输，已与国内多家科研院所建立合作关系。</p>
+                            <a href="defense-demo.html" class="btn">查看详情</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -83,15 +220,15 @@
             <div class="footer-content">
                 <div class="footer-info">
                     <h3>联系我们</h3>
-                    <p>地址：XX省XX市XX区XX路XX号</p>
-                    <p>电话：+86 XXX XXXX XXXX</p>
-                    <p>邮箱：example@university.edu.cn</p>
+                    <p>地址：重庆市渝北区两江大道9号-科研楼B205</p>
+                    <p>电话：023-67952817</p>
+                    <p>邮箱：xiangpengli.cs@gmail.com</p>
                 </div>
                 <div class="footer-links">
                     <h3>快速链接</h3>
                     <ul>
                         <li><a href="../../index.html">首页</a></li>
-                        <li><a href="index.html">科研成果</a></li>
+                        <li><a href="index.html">科研动态</a></li>
                         <li><a href="../communication/index.html">开放交流</a></li>
                         <li><a href="../news/index.html">新闻中心</a></li>
                         <li><a href="../directions/index.html">研究方向</a></li>
@@ -99,7 +236,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 实验室名称. 保留所有权利.</p>
+                <p>&copy; 2023 智能网联汽车安全实验室 (ivis). 保留所有权利.</p>
             </div>
         </div>
     </footer>

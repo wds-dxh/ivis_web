@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>研究方向 - 实验室网站</title>
+    <title>研究方向 - 智能网联汽车安全实验室 (ivis)</title>
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/navigation.css">
     <style>
@@ -125,12 +125,14 @@
         /* 跳转导航 */
         .direction-nav {
             position: sticky;
-            top: 80px;
+            top: 0;
+            z-index: 100;
             background-color: var(--card-background);
-            border-radius: 8px;
+            border-radius: 0;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             margin-bottom: 3rem;
             overflow: hidden;
+            width: 100%;
         }
         
         .direction-nav ul {
@@ -139,6 +141,7 @@
             overflow-x: auto;
             padding: 0;
             margin: 0;
+            justify-content: center;
         }
         
         .direction-nav li {
@@ -168,6 +171,10 @@
             .direction-image {
                 order: -1 !important;
             }
+            
+            .direction-nav ul {
+                justify-content: flex-start;
+            }
         }
     </style>
 </head>
@@ -176,11 +183,11 @@
         <nav id="main-nav">
             <div class="nav-container">
                 <div class="logo">
-                    <a href="../../index.html">实验室名称</a>
+                    <a href="../../index.html">智能网联汽车安全实验室 (ivis)</a>
                 </div>
                 <ul class="nav-links">
                     <li><a href="../../index.html">首页</a></li>
-                    <li><a href="../research/index.html">科研成果</a></li>
+                    <li><a href="../research/index.html">科研动态</a></li>
                     <li><a href="../communication/index.html">开放交流</a></li>
                     <li><a href="../news/index.html">新闻中心</a></li>
                     <li><a href="index.html" class="active">研究方向</a></li>
@@ -193,58 +200,56 @@
         <section class="hero">
             <div class="container">
                 <h1>研究方向</h1>
-                <p>探索我们实验室的主要研究领域和前沿课题</p>
+                <p>探索我们实验室的智能网联汽车安全研究领域和前沿课题</p>
             </div>
         </section>
 
+        <div class="direction-nav">
+            <ul>
+                <li><a href="#direction1" class="active">硬件加密与信息安全</a></li>
+                <li><a href="#direction2">具身智能底盘研发</a></li>
+                <li><a href="#direction3">智能座舱与AR-HUD</a></li>
+                <li><a href="#direction4">国防电子通信安全</a></li>
+            </ul>
+        </div>
+
         <section class="directions">
-            <div class="container">
-                <div class="direction-nav">
-                    <ul>
-                        <li><a href="#direction1" class="active">研究方向一</a></li>
-                        <li><a href="#direction2">研究方向二</a></li>
-                        <li><a href="#direction3">研究方向三</a></li>
-                        <li><a href="#direction4">研究方向四</a></li>
-                        <li><a href="#direction5">研究方向五</a></li>
-                    </ul>
-                </div>
-                
+            <div class="container">                
                 <div class="direction-row" id="direction1">
                     <div class="direction-section">
                         <div class="direction-header">
-                            <h2>研究方向一：人工智能与机器学习</h2>
+                            <h2>研究方向一：硬件加密与信息安全</h2>
                         </div>
                         <div class="direction-content">
                             <div class="direction-text">
-                                <p>本研究方向专注于人工智能和机器学习领域的前沿研究，包括深度学习、强化学习、计算机视觉、自然语言处理等多个子方向。我们致力于开发具有自主学习能力的智能系统，解决实际应用中的复杂问题。</p>
+                                <p>本研究方向专注于智能网联汽车硬件安全与加密技术的研究，包括TSN指纹加密、硬件化与小型化的信息安全方案等。我们致力于设计高效、可靠的硬件安全防护机制，抵御各类攻击对车载系统安全的威胁，确保车辆核心部件的安全可靠。</p>
                                 
-                                <p>我们的研究团队在神经网络架构设计、数据高效学习算法、迁移学习以及可解释人工智能等方面拥有丰富的研究经验和成果。通过与国内外多家高校和企业的合作，我们将先进的理论研究与实际应用场景相结合，推动人工智能技术的落地与创新。</p>
+                                <p>我们的研究团队在硬件加密、创新算法、高精度检测与应用广泛化等方面具有显著优势。通过采用独特的TSN指纹加密技术，结合硬件化和小型化的安全方案，我们能够为智能网联汽车提供具有唯一性、抗干扰能力强和高精度检测的安全保障体系。</p>
                                 
                                 <div class="key-points">
                                     <h3>研究重点</h3>
                                     <ul>
-                                        <li>高效神经网络架构设计与优化</li>
-                                        <li>小样本学习与迁移学习方法</li>
-                                        <li>多模态融合与跨模态学习</li>
-                                        <li>可解释性与可信赖人工智能</li>
-                                        <li>智能系统的实际应用研究</li>
+                                        <li>TSN指纹加密技术与高精度检测方法</li>
+                                        <li>车载硬件安全模块硬件化与小型化研究</li>
+                                        <li>创新算法开发与安全防护机制设计</li>
+                                        <li>汽车电子硬件安全攻防技术研究</li>
+                                        <li>面向国防电子通信的信息安全解决方案</li>
                                     </ul>
                                 </div>
                                 
-                                <div class="team-members">
+                                <!-- <div class="team-members">
                                     <h3>研究团队</h3>
                                     <div class="team-grid">
-                                        <span class="team-member">张教授（方向负责人）</span>
+                                        <span class="team-member">王教授（方向负责人）</span>
                                         <span class="team-member">李副教授</span>
-                                        <span class="team-member">王博士</span>
-                                        <span class="team-member">刘博士</span>
+                                        <span class="team-member">张博士</span>
                                         <span class="team-member">5名博士生</span>
-                                        <span class="team-member">8名硕士生</span>
+                                        <span class="team-member">7名硕士生</span>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="direction-image">
-                                <img src="../../assets/images/direction1.jpg" alt="人工智能与机器学习研究">
+                                <img src="../../assets/images/hardware-security.png" alt="硬件加密与信息安全">
                             </div>
                         </div>
                     </div>
@@ -253,38 +258,38 @@
                 <div class="direction-row" id="direction2">
                     <div class="direction-section">
                         <div class="direction-header">
-                            <h2>研究方向二：数据科学与大数据分析</h2>
+                            <h2>研究方向二：具身智能底盘研发</h2>
                         </div>
                         <div class="direction-content">
                             <div class="direction-text">
-                                <p>本研究方向关注大数据处理、挖掘与分析方法的研究与应用，旨在从海量、多源、异构的数据中提取有价值的信息和知识，为科学研究和决策支持提供数据驱动的解决方案。</p>
+                                <p>本研究方向关注具身智能技术在智能网联汽车领域的创新应用，致力于开发具有外观专利和自主设计方案的智能小车平台。我们的研究基于大模型技术与物体抓取技术，打造从0到1集配软硬一体的具身智能安全小车，为实现智能安全交通提供全新的解决方案。</p>
                                 
-                                <p>我们的研究涵盖高性能数据处理框架、分布式计算模型、数据挖掘算法、社会网络分析、时空数据分析等领域。通过与各行业合作，我们将理论研究应用于智慧城市、健康医疗、环境监测等多个实际场景，实现数据的价值转化。</p>
+                                <p>我们的团队在语音控制、智能识别与执行、自主导航等方面开展深入研究，通过丰富的应用场景拓展，实现智能小车的多功能化与高效化。这一研究方向代表了人工智能与汽车工程的前沿融合，为未来智能交通系统奠定重要基础。</p>
                                 
                                 <div class="key-points">
                                     <h3>研究重点</h3>
                                     <ul>
-                                        <li>高效大数据处理与存储架构</li>
-                                        <li>数据质量评估与数据清洗方法</li>
-                                        <li>复杂网络分析与社区发现</li>
-                                        <li>时空数据挖掘与预测分析</li>
-                                        <li>数据安全与隐私保护技术</li>
+                                        <li>基于大模型技术的语音控制与物体抓取</li>
+                                        <li>具身智能安全小车自主设计方案</li>
+                                        <li>从0到1配软硬一体的集成开发</li>
+                                        <li>智能语音识别与执行系统研究</li>
+                                        <li>智能底盘应用场景与功能拓展研究</li>
                                     </ul>
                                 </div>
                                 
-                                <div class="team-members">
+                                <!-- <div class="team-members">
                                     <h3>研究团队</h3>
                                     <div class="team-grid">
                                         <span class="team-member">陈教授（方向负责人）</span>
-                                        <span class="team-member">赵副教授</span>
-                                        <span class="team-member">吴博士</span>
+                                        <span class="team-member">刘副教授</span>
+                                        <span class="team-member">赵博士</span>
                                         <span class="team-member">4名博士生</span>
-                                        <span class="team-member">6名硕士生</span>
+                                        <span class="team-member">8名硕士生</span>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="direction-image">
-                                <img src="../../assets/images/direction2.jpg" alt="数据科学与大数据分析研究">
+                                <img src="../../assets/images/embodied-intelligence.png" alt="具身智能底盘研发">
                             </div>
                         </div>
                     </div>
@@ -293,38 +298,38 @@
                 <div class="direction-row" id="direction3">
                     <div class="direction-section">
                         <div class="direction-header">
-                            <h2>研究方向三：智能感知与物联网</h2>
+                            <h2>研究方向三：智能座舱与AR-HUD</h2>
                         </div>
                         <div class="direction-content">
                             <div class="direction-text">
-                                <p>本研究方向关注智能感知技术与物联网系统的研究与开发，包括传感器网络、边缘计算、环境感知、智能交互等领域。我们致力于构建高效、可靠、安全的物联网系统，实现物理世界与信息世界的融合。</p>
+                                <p>本研究方向关注智能座舱技术与增强现实平视显示系统(AR-HUD)的研究与开发，整合AR眼镜技术与车载信息显示系统，提供先进的驾驶辅助与人机交互体验。我们通过方案讨论、定型、外采设备开发测试，实现协同企业上车AR-HUD与AR-Glass技术。</p>
                                 
-                                <p>我们的研究团队在低功耗传感器设计、分布式感知算法、边缘智能与云边协同等方面具有深厚的技术积累。通过与工业界的紧密合作，我们将前沿技术应用于智能家居、工业互联网、智慧农业等多个领域，推动物联网技术的产业化应用。</p>
+                                <p>凭借丰富的技术经验，我们与行业专家紧密合作，利用实验室采购机会搭建AR仿真技术平台，与企业联合增加技术积累，发挥高校优势溯源构建技术壁垒。我们的目标是通过持续创新，提供更安全、更智能的驾驶体验。</p>
                                 
                                 <div class="key-points">
                                     <h3>研究重点</h3>
                                     <ul>
-                                        <li>低功耗传感器网络与协议设计</li>
-                                        <li>分布式感知与协作决策算法</li>
-                                        <li>边缘计算与云边协同架构</li>
-                                        <li>物联网安全与隐私保护</li>
-                                        <li>智能物联网应用系统开发</li>
+                                        <li>AR眼镜系统架构与仿真平台开发</li>
+                                        <li>智能座舱人机交互技术研究</li>
+                                        <li>AR-HUD与AR-Glass系统集成与优化</li>
+                                        <li>基于ROS的自动驾驶信息呈现技术</li>
+                                        <li>智能驾驶辅助视觉系统设计</li>
                                     </ul>
                                 </div>
                                 
-                                <div class="team-members">
+                                <!-- <div class="team-members">
                                     <h3>研究团队</h3>
                                     <div class="team-grid">
-                                        <span class="team-member">孙教授（方向负责人）</span>
-                                        <span class="team-member">黄副教授</span>
+                                        <span class="team-member">林教授（方向负责人）</span>
+                                        <span class="team-member">吴副教授</span>
                                         <span class="team-member">郑博士</span>
-                                        <span class="team-member">3名博士生</span>
-                                        <span class="team-member">7名硕士生</span>
+                                        <span class="team-member">5名博士生</span>
+                                        <span class="team-member">6名硕士生</span>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="direction-image">
-                                <img src="../../assets/images/direction3.jpg" alt="智能感知与物联网研究">
+                                <img src="../../assets/images/ar-hud.png" alt="智能座舱与AR-HUD研究">
                             </div>
                         </div>
                     </div>
@@ -333,79 +338,38 @@
                 <div class="direction-row" id="direction4">
                     <div class="direction-section">
                         <div class="direction-header">
-                            <h2>研究方向四：智能机器人与自主系统</h2>
+                            <h2>研究方向四：国防电子通信安全</h2>
                         </div>
                         <div class="direction-content">
                             <div class="direction-text">
-                                <p>本研究方向专注于智能机器人与自主系统的理论与技术研究，包括机器人感知、规划与控制、人机交互、群体智能等领域。我们致力于开发具有自主决策能力和环境适应性的智能机器人系统。</p>
+                                <p>本研究方向专注于国防电子通信安全技术研究，包括无人机协同通信系统、智能化分析平台等的开发。我们致力于构建无人机协同通信系统，打造无人机运维与智能化分析平台，促进国防电子通信信息安全的发展。</p>
                                 
-                                <p>我们的研究团队在视觉导航、操作规划、多机器人协同等方面拥有多年的研究经验。通过国内外科研合作和产学研结合，我们将前沿技术应用于服务机器人、工业机器人、特种机器人等领域，推动智能机器人技术的创新与应用。</p>
+                                <p>我们的团队已与中电科29/30所等国防安全机构建立战略合作关系，在电子通信网络安全领域取得了显著的研究成果。通过与国家级研究机构的紧密合作，我们将前沿安全技术应用于国家国防安全领域，已实现70万+项目合同落地与落入。</p>
                                 
                                 <div class="key-points">
                                     <h3>研究重点</h3>
                                     <ul>
-                                        <li>机器人环境感知与场景理解</li>
-                                        <li>自主导航与路径规划算法</li>
-                                        <li>机器人操作与精细控制技术</li>
-                                        <li>多机器人协同与群体智能</li>
-                                        <li>人机自然交互与协作技术</li>
+                                        <li>无人机协同通信系统设计与实现</li>
+                                        <li>国防电子通信网络安全防护机制</li>
+                                        <li>安全可信电子通信网络系统构建</li>
+                                        <li>面向国家安全的通信技术研究</li>
+                                        <li>多模态大模型安全红队测试技术</li>
                                     </ul>
                                 </div>
                                 
-                                <div class="team-members">
+                                <!-- <div class="team-members">
                                     <h3>研究团队</h3>
                                     <div class="team-grid">
-                                        <span class="team-member">周教授（方向负责人）</span>
+                                        <span class="team-member">孙教授（方向负责人）</span>
                                         <span class="team-member">钱副教授</span>
-                                        <span class="team-member">徐博士</span>
-                                        <span class="team-member">何博士</span>
+                                        <span class="team-member">周博士</span>
                                         <span class="team-member">4名博士生</span>
                                         <span class="team-member">9名硕士生</span>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="direction-image">
-                                <img src="../../assets/images/direction4.jpg" alt="智能机器人与自主系统研究">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="direction-row" id="direction5">
-                    <div class="direction-section">
-                        <div class="direction-header">
-                            <h2>研究方向五：智能医疗与健康信息学</h2>
-                        </div>
-                        <div class="direction-content">
-                            <div class="direction-text">
-                                <p>本研究方向探索人工智能、数据科学与医疗健康领域的交叉融合，致力于开发先进的智能医疗技术和健康信息系统，提升医疗服务的效率和质量，促进个性化医疗和精准健康的发展。</p>
-                                
-                                <p>我们的研究涵盖医学图像分析、健康数据挖掘、疾病预测模型、智能辅助诊疗系统等领域。通过与医疗机构的紧密合作，我们将前沿技术应用于临床实践，解决医疗健康领域的实际问题，为人类健康福祉做出贡献。</p>
-                                
-                                <div class="key-points">
-                                    <h3>研究重点</h3>
-                                    <ul>
-                                        <li>医学图像处理与分析技术</li>
-                                        <li>电子健康记录挖掘与分析</li>
-                                        <li>疾病风险预测与早期筛查</li>
-                                        <li>智能辅助诊断与治疗系统</li>
-                                        <li>远程健康监测与管理平台</li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="team-members">
-                                    <h3>研究团队</h3>
-                                    <div class="team-grid">
-                                        <span class="team-member">杨教授（方向负责人）</span>
-                                        <span class="team-member">朱副教授</span>
-                                        <span class="team-member">秦博士</span>
-                                        <span class="team-member">3名博士生</span>
-                                        <span class="team-member">5名硕士生</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="direction-image">
-                                <img src="../../assets/images/direction5.jpg" alt="智能医疗与健康信息学研究">
+                                <img src="../../assets/images/defense-communications.png" alt="国防电子通信安全研究">
                             </div>
                         </div>
                     </div>
@@ -419,15 +383,15 @@
             <div class="footer-content">
                 <div class="footer-info">
                     <h3>联系我们</h3>
-                    <p>地址：XX省XX市XX区XX路XX号</p>
-                    <p>电话：+86 XXX XXXX XXXX</p>
-                    <p>邮箱：example@university.edu.cn</p>
+                    <p>地址：重庆市渝北区两江大道9号-科研楼B205</p>
+                    <p>电话：023-67952817</p>
+                    <p>邮箱：xiangpengli.cs@gmail.com</p>
                 </div>
                 <div class="footer-links">
                     <h3>快速链接</h3>
                     <ul>
                         <li><a href="../../index.html">首页</a></li>
-                        <li><a href="../research/index.html">科研成果</a></li>
+                        <li><a href="../research/index.html">科研动态</a></li>
                         <li><a href="../communication/index.html">开放交流</a></li>
                         <li><a href="../news/index.html">新闻中心</a></li>
                         <li><a href="index.html">研究方向</a></li>
@@ -435,7 +399,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 实验室名称. 保留所有权利.</p>
+                <p>&copy; 2023 智能网联汽车安全实验室 (ivis). 保留所有权利.</p>
             </div>
         </div>
     </footer>
@@ -455,7 +419,7 @@
                     const targetElement = document.querySelector(targetId);
                     
                     window.scrollTo({
-                        top: targetElement.offsetTop - 100,
+                        top: targetElement.offsetTop - 50,
                         behavior: 'smooth'
                     });
                 });

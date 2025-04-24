@@ -136,7 +136,8 @@ section {
 
 .intro-text {
     flex: 1;
-    min-width: 300px;
+    min-width: 400px;
+    max-height: 250px;
 }
 
 .intro-image {
