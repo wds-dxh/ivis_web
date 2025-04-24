@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>研究方向 - 实验室网站</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/navigation.css">
+    <style>
+        /* 研究方向页面特定样式 */
+        .direction-section {
+            margin-bottom: 5rem;
+        }
+        
+        .direction-header {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+        
+        .direction-header::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 5px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        .direction-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .direction-text {
+            line-height: 1.8;
+        }
+        
+        .direction-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .direction-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .direction-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .team-members {
+            margin-top: 2rem;
+        }
+        
+        .team-members h3 {
+            margin-bottom: 1rem;
+        }
+        
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .team-member {
+            background-color: #f5f5f5;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .team-member::before {
+            content: '👤';
+            margin-right: 0.5rem;
+        }
+        
+        .key-points {
+            margin-top: 2rem;
+        }
+        
+        .key-points h3 {
+            margin-bottom: 1rem;
+        }
+        
+        .key-points ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .key-points li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .key-points li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+        
+        .direction-row:nth-child(even) .direction-content {
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .direction-row:nth-child(odd) .direction-content {
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .direction-row:nth-child(odd) .direction-image {
+            order: -1;
+        }
+        
+        /* 跳转导航 */
+        .direction-nav {
+            position: sticky;
+            top: 80px;
+            background-color: var(--card-background);
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            overflow: hidden;
+        }
+        
+        .direction-nav ul {
+            display: flex;
+            list-style: none;
+            overflow-x: auto;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .direction-nav li {
+            flex: 0 0 auto;
+        }
+        
+        .direction-nav a {
+            display: block;
+            padding: 1rem 1.5rem;
+            white-space: nowrap;
+            color: var(--text-color);
+            transition: all var(--transition-speed);
+            border-bottom: 3px solid transparent;
+        }
+        
+        .direction-nav a:hover, .direction-nav a.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .direction-content {
+                grid-template-columns: 1fr !important;
+                gap: 2rem;
+            }
+            
+            .direction-image {
+                order: -1 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav id="main-nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="../../index.html">实验室名称</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="../../index.html">首页</a></li>
+                    <li><a href="../research/index.html">科研成果</a></li>
+                    <li><a href="../communication/index.html">开放交流</a></li>
+                    <li><a href="../news/index.html">新闻中心</a></li>
+                    <li><a href="index.html" class="active">研究方向</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>研究方向</h1>
+                <p>探索我们实验室的主要研究领域和前沿课题</p>
+            </div>
+        </section>
+
+        <section class="directions">
+            <div class="container">
+                <div class="direction-nav">
+                    <ul>
+                        <li><a href="#direction1" class="active">研究方向一</a></li>
+                        <li><a href="#direction2">研究方向二</a></li>
+                        <li><a href="#direction3">研究方向三</a></li>
+                        <li><a href="#direction4">研究方向四</a></li>
+                        <li><a href="#direction5">研究方向五</a></li>
+                    </ul>
+                </div>
+                
+                <div class="direction-row" id="direction1">
+                    <div class="direction-section">
+                        <div class="direction-header">
+                            <h2>研究方向一：人工智能与机器学习</h2>
+                        </div>
+                        <div class="direction-content">
+                            <div class="direction-text">
+                                <p>本研究方向专注于人工智能和机器学习领域的前沿研究，包括深度学习、强化学习、计算机视觉、自然语言处理等多个子方向。我们致力于开发具有自主学习能力的智能系统，解决实际应用中的复杂问题。</p>
+                                
+                                <p>我们的研究团队在神经网络架构设计、数据高效学习算法、迁移学习以及可解释人工智能等方面拥有丰富的研究经验和成果。通过与国内外多家高校和企业的合作，我们将先进的理论研究与实际应用场景相结合，推动人工智能技术的落地与创新。</p>
+                                
+                                <div class="key-points">
+                                    <h3>研究重点</h3>
+                                    <ul>
+                                        <li>高效神经网络架构设计与优化</li>
+                                        <li>小样本学习与迁移学习方法</li>
+                                        <li>多模态融合与跨模态学习</li>
+                                        <li>可解释性与可信赖人工智能</li>
+                                        <li>智能系统的实际应用研究</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="team-members">
+                                    <h3>研究团队</h3>
+                                    <div class="team-grid">
+                                        <span class="team-member">张教授（方向负责人）</span>
+                                        <span class="team-member">李副教授</span>
+                                        <span class="team-member">王博士</span>
+                                        <span class="team-member">刘博士</span>
+                                        <span class="team-member">5名博士生</span>
+                                        <span class="team-member">8名硕士生</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="direction-image">
+                                <img src="../../assets/images/direction1.jpg" alt="人工智能与机器学习研究">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="direction-row" id="direction2">
+                    <div class="direction-section">
+                        <div class="direction-header">
+                            <h2>研究方向二：数据科学与大数据分析</h2>
+                        </div>
+                        <div class="direction-content">
+                            <div class="direction-text">
+                                <p>本研究方向关注大数据处理、挖掘与分析方法的研究与应用，旨在从海量、多源、异构的数据中提取有价值的信息和知识，为科学研究和决策支持提供数据驱动的解决方案。</p>
+                                
+                                <p>我们的研究涵盖高性能数据处理框架、分布式计算模型、数据挖掘算法、社会网络分析、时空数据分析等领域。通过与各行业合作，我们将理论研究应用于智慧城市、健康医疗、环境监测等多个实际场景，实现数据的价值转化。</p>
+                                
+                                <div class="key-points">
+                                    <h3>研究重点</h3>
+                                    <ul>
+                                        <li>高效大数据处理与存储架构</li>
+                                        <li>数据质量评估与数据清洗方法</li>
+                                        <li>复杂网络分析与社区发现</li>
+                                        <li>时空数据挖掘与预测分析</li>
+                                        <li>数据安全与隐私保护技术</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="team-members">
+                                    <h3>研究团队</h3>
+                                    <div class="team-grid">
+                                        <span class="team-member">陈教授（方向负责人）</span>
+                                        <span class="team-member">赵副教授</span>
+                                        <span class="team-member">吴博士</span>
+                                        <span class="team-member">4名博士生</span>
+                                        <span class="team-member">6名硕士生</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="direction-image">
+                                <img src="../../assets/images/direction2.jpg" alt="数据科学与大数据分析研究">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="direction-row" id="direction3">
+                    <div class="direction-section">
+                        <div class="direction-header">
+                            <h2>研究方向三：智能感知与物联网</h2>
+                        </div>
+                        <div class="direction-content">
+                            <div class="direction-text">
+                                <p>本研究方向关注智能感知技术与物联网系统的研究与开发，包括传感器网络、边缘计算、环境感知、智能交互等领域。我们致力于构建高效、可靠、安全的物联网系统，实现物理世界与信息世界的融合。</p>
+                                
+                                <p>我们的研究团队在低功耗传感器设计、分布式感知算法、边缘智能与云边协同等方面具有深厚的技术积累。通过与工业界的紧密合作，我们将前沿技术应用于智能家居、工业互联网、智慧农业等多个领域，推动物联网技术的产业化应用。</p>
+                                
+                                <div class="key-points">
+                                    <h3>研究重点</h3>
+                                    <ul>
+                                        <li>低功耗传感器网络与协议设计</li>
+                                        <li>分布式感知与协作决策算法</li>
+                                        <li>边缘计算与云边协同架构</li>
+                                        <li>物联网安全与隐私保护</li>
+                                        <li>智能物联网应用系统开发</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="team-members">
+                                    <h3>研究团队</h3>
+                                    <div class="team-grid">
+                                        <span class="team-member">孙教授（方向负责人）</span>
+                                        <span class="team-member">黄副教授</span>
+                                        <span class="team-member">郑博士</span>
+                                        <span class="team-member">3名博士生</span>
+                                        <span class="team-member">7名硕士生</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="direction-image">
+                                <img src="../../assets/images/direction3.jpg" alt="智能感知与物联网研究">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="direction-row" id="direction4">
+                    <div class="direction-section">
+                        <div class="direction-header">
+                            <h2>研究方向四：智能机器人与自主系统</h2>
+                        </div>
+                        <div class="direction-content">
+                            <div class="direction-text">
+                                <p>本研究方向专注于智能机器人与自主系统的理论与技术研究，包括机器人感知、规划与控制、人机交互、群体智能等领域。我们致力于开发具有自主决策能力和环境适应性的智能机器人系统。</p>
+                                
+                                <p>我们的研究团队在视觉导航、操作规划、多机器人协同等方面拥有多年的研究经验。通过国内外科研合作和产学研结合，我们将前沿技术应用于服务机器人、工业机器人、特种机器人等领域，推动智能机器人技术的创新与应用。</p>
+                                
+                                <div class="key-points">
+                                    <h3>研究重点</h3>
+                                    <ul>
+                                        <li>机器人环境感知与场景理解</li>
+                                        <li>自主导航与路径规划算法</li>
+                                        <li>机器人操作与精细控制技术</li>
+                                        <li>多机器人协同与群体智能</li>
+                                        <li>人机自然交互与协作技术</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="team-members">
+                                    <h3>研究团队</h3>
+                                    <div class="team-grid">
+                                        <span class="team-member">周教授（方向负责人）</span>
+                                        <span class="team-member">钱副教授</span>
+                                        <span class="team-member">徐博士</span>
+                                        <span class="team-member">何博士</span>
+                                        <span class="team-member">4名博士生</span>
+                                        <span class="team-member">9名硕士生</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="direction-image">
+                                <img src="../../assets/images/direction4.jpg" alt="智能机器人与自主系统研究">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="direction-row" id="direction5">
+                    <div class="direction-section">
+                        <div class="direction-header">
+                            <h2>研究方向五：智能医疗与健康信息学</h2>
+                        </div>
+                        <div class="direction-content">
+                            <div class="direction-text">
+                                <p>本研究方向探索人工智能、数据科学与医疗健康领域的交叉融合，致力于开发先进的智能医疗技术和健康信息系统，提升医疗服务的效率和质量，促进个性化医疗和精准健康的发展。</p>
+                                
+                                <p>我们的研究涵盖医学图像分析、健康数据挖掘、疾病预测模型、智能辅助诊疗系统等领域。通过与医疗机构的紧密合作，我们将前沿技术应用于临床实践，解决医疗健康领域的实际问题，为人类健康福祉做出贡献。</p>
+                                
+                                <div class="key-points">
+                                    <h3>研究重点</h3>
+                                    <ul>
+                                        <li>医学图像处理与分析技术</li>
+                                        <li>电子健康记录挖掘与分析</li>
+                                        <li>疾病风险预测与早期筛查</li>
+                                        <li>智能辅助诊断与治疗系统</li>
+                                        <li>远程健康监测与管理平台</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="team-members">
+                                    <h3>研究团队</h3>
+                                    <div class="team-grid">
+                                        <span class="team-member">杨教授（方向负责人）</span>
+                                        <span class="team-member">朱副教授</span>
+                                        <span class="team-member">秦博士</span>
+                                        <span class="team-member">3名博士生</span>
+                                        <span class="team-member">5名硕士生</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="direction-image">
+                                <img src="../../assets/images/direction5.jpg" alt="智能医疗与健康信息学研究">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>联系我们</h3>
+                    <p>地址：XX省XX市XX区XX路XX号</p>
+                    <p>电话：+86 XXX XXXX XXXX</p>
+                    <p>邮箱：example@university.edu.cn</p>
+                </div>
+                <div class="footer-links">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="../../index.html">首页</a></li>
+                        <li><a href="../research/index.html">科研成果</a></li>
+                        <li><a href="../communication/index.html">开放交流</a></li>
+                        <li><a href="../news/index.html">新闻中心</a></li>
+                        <li><a href="index.html">研究方向</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 实验室名称. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script>
+        // 滚动监听，激活对应的导航项
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.direction-row');
+            const navLinks = document.querySelectorAll('.direction-nav a');
+            
+            // 平滑滚动到锚点
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // 滚动监听
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (window.pageYOffset >= sectionTop - 150) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

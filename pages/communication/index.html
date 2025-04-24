@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开放交流 - 实验室网站</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/navigation.css">
+    <style>
+        /* 开放交流页面特定样式 */
+        .event-card {
+            background-color: var(--card-background);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .event-card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .event-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .event-date {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            margin-right: 1rem;
+            text-align: center;
+            min-width: 80px;
+        }
+        
+        .event-location {
+            display: flex;
+            align-items: center;
+        }
+        
+        .event-location::before {
+            content: '📍';
+            margin-right: 0.5rem;
+        }
+        
+        .event-card h3 {
+            margin: 0.5rem 0;
+            font-size: 1.5rem;
+        }
+        
+        .event-description {
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .event-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+        
+        .event-type {
+            background-color: #f0f0f0;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .upcoming-events, .past-events {
+            margin-bottom: 4rem;
+        }
+        
+        .tab-container {
+            margin-bottom: 2rem;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+        
+        .tab {
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            font-weight: 500;
+            transition: all var(--transition-speed);
+        }
+        
+        .tab.active {
+            border-bottom-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav id="main-nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="../../index.html">实验室名称</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="../../index.html">首页</a></li>
+                    <li><a href="../research/index.html">科研成果</a></li>
+                    <li><a href="index.html" class="active">开放交流</a></li>
+                    <li><a href="../news/index.html">新闻中心</a></li>
+                    <li><a href="../directions/index.html">研究方向</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>开放交流</h1>
+                <p>了解我们的学术会议、讲座和开放日活动</p>
+            </div>
+        </section>
+
+        <section class="events">
+            <div class="container">
+                <div class="tab-container">
+                    <div class="tabs">
+                        <div class="tab active" data-tab="upcoming">即将举行</div>
+                        <div class="tab" data-tab="conferences">学术会议</div>
+                        <div class="tab" data-tab="lectures">研讨讲座</div>
+                        <div class="tab" data-tab="past">往期活动</div>
+                    </div>
+                    
+                    <div class="tab-content active" id="upcoming">
+                        <h2>即将举行的活动</h2>
+                        
+                        <div class="event-card">
+                            <div class="event-card-content">
+                                <div class="event-meta">
+                                    <div class="event-date">
+                                        <div class="date-month">12月</div>
+                                        <div class="date-day">15</div>
+                                    </div>
+                                    <div class="event-location">线上会议</div>
+                                </div>
+                                <h3>人工智能前沿技术讲座</h3>
+                                <div class="event-description">
+                                    <p>本次讲座将邀请来自国内外知名高校和研究机构的专家学者，共同探讨人工智能领域的最新研究成果和未来发展趋势。</p>
+                                </div>
+                                <div class="event-footer">
+                                    <span class="event-type">讲座</span>
+                                    <a href="lecture1.html" class="btn">了解详情</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="event-card">
+                            <div class="event-card-content">
+                                <div class="event-meta">
+                                    <div class="event-date">
+                                        <div class="date-month">1月</div>
+                                        <div class="date-day">10</div>
+                                    </div>
+                                    <div class="event-location">线下会议室A</div>
+                                </div>
+                                <h3>2024年学术研讨会</h3>
+                                <div class="event-description">
+                                    <p>本次研讨会将围绕实验室的主要研究方向展开讨论，邀请相关领域的专家学者参与，共同探讨学术前沿问题和未来合作机会。</p>
+                                </div>
+                                <div class="event-footer">
+                                    <span class="event-type">研讨会</span>
+                                    <a href="conference1.html" class="btn">了解详情</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="conferences">
+                        <h2>学术会议</h2>
+                        
+                        <div class="event-card">
+                            <div class="event-card-content">
+                                <div class="event-meta">
+                                    <div class="event-date">
+                                        <div class="date-month">1月</div>
+                                        <div class="date-day">10</div>
+                                    </div>
+                                    <div class="event-location">线下会议室A</div>
+                                </div>
+                                <h3>2024年学术研讨会</h3>
+                                <div class="event-description">
+                                    <p>本次研讨会将围绕实验室的主要研究方向展开讨论，邀请相关领域的专家学者参与，共同探讨学术前沿问题和未来合作机会。</p>
+                                </div>
+                                <div class="event-footer">
+                                    <span class="event-type">研讨会</span>
+                                    <a href="conference1.html" class="btn">了解详情</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="event-card">
+                            <div class="event-card-content">
+                                <div class="event-meta">
+                                    <div class="event-date">
+                                        <div class="date-month">3月</div>
+                                        <div class="date-day">20</div>
+                                    </div>
+                                    <div class="event-location">国际会议中心</div>
+                                </div>
+                                <h3>第五届国际学术交流大会</h3>
+                                <div class="event-description">
+                                    <p>本次大会将邀请来自全球各地的研究人员共同参与，分享最新研究成果，促进国际学术交流与合作。</p>
+                                </div>
+                                <div class="event-footer">
+                                    <span class="event-type">国际会议</span>
+                                    <a href="conference2.html" class="btn">了解详情</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="lectures">
+                        <h2>研讨讲座</h2>
+                        
+                        <div class="event-card">
+                            <div class="event-card-content">
+                                <div class="event-meta">
+                                    <div class="event-date">
+                                        <div class="date-month">12月</div>
+                                        <div class="date-day">15</div>
+                                    </div>
+                                    <div class="event-location">线上会议</div>
+                                </div>
+                                <h3>人工智能前沿技术讲座</h3>
+                                <div class="event-description">
+                                    <p>本次讲座将邀请来自国内外知名高校和研究机构的专家学者，共同探讨人工智能领域的最新研究成果和未来发展趋势。</p>
+                                </div>
+                                <div class="event-footer">
+                                    <span class="event-type">讲座</span>
+                                    <a href="lecture1.html" class="btn">了解详情</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="event-card">
+                            <div class="event-card-content">
+                                <div class="event-meta">
+                                    <div class="event-date">
+                                        <div class="date-month">2月</div>
+                                        <div class="date-day">5</div>
+                                    </div>
+                                    <div class="event-location">实验室报告厅</div>
+                                </div>
+                                <h3>学术论文写作与发表经验分享</h3>
+                                <div class="event-description">
+                                    <p>本次讲座将邀请经验丰富的学者分享学术论文的写作技巧、投稿策略以及如何应对审稿意见等实用知识。</p>
+                                </div>
+                                <div class="event-footer">
+                                    <span class="event-type">经验分享</span>
+                                    <a href="lecture2.html" class="btn">了解详情</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="past">
+                        <h2>往期活动</h2>
+                        
+                        <div class="event-card">
+                            <div class="event-card-content">
+                                <div class="event-meta">
+                                    <div class="event-date">
+                                        <div class="date-month">9月</div>
+                                        <div class="date-day">20</div>
+                                    </div>
+                                    <div class="event-location">线下会议室B</div>
+                                </div>
+                                <h3>新学期实验室开放日</h3>
+                                <div class="event-description">
+                                    <p>本次活动面向全校师生开放，展示实验室的最新研究成果和实验设备，并介绍实验室的研究方向和招生信息。</p>
+                                </div>
+                                <div class="event-footer">
+                                    <span class="event-type">开放日</span>
+                                    <a href="past_event1.html" class="btn">查看回顾</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="event-card">
+                            <div class="event-card-content">
+                                <div class="event-meta">
+                                    <div class="event-date">
+                                        <div class="date-month">7月</div>
+                                        <div class="date-day">15</div>
+                                    </div>
+                                    <div class="event-location">线上会议</div>
+                                </div>
+                                <h3>暑期学术交流会</h3>
+                                <div class="event-description">
+                                    <p>本次交流会邀请了多位国内外知名学者分享他们的最新研究成果，并与实验室成员进行深入交流和讨论。</p>
+                                </div>
+                                <div class="event-footer">
+                                    <span class="event-type">交流会</span>
+                                    <a href="past_event2.html" class="btn">查看回顾</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>联系我们</h3>
+                    <p>地址：XX省XX市XX区XX路XX号</p>
+                    <p>电话：+86 XXX XXXX XXXX</p>
+                    <p>邮箱：example@university.edu.cn</p>
+                </div>
+                <div class="footer-links">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="../../index.html">首页</a></li>
+                        <li><a href="../research/index.html">科研成果</a></li>
+                        <li><a href="index.html">开放交流</a></li>
+                        <li><a href="../news/index.html">新闻中心</a></li>
+                        <li><a href="../directions/index.html">研究方向</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 实验室名称. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script>
+        // 标签切换功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // 移除所有标签的激活状态
+                    tabs.forEach(t => t.classList.remove('active'));
+                    // 激活当前点击的标签
+                    this.classList.add('active');
+                    
+                    // 隐藏所有内容区域
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    // 显示对应的内容区域
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
