@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>科研动态 - 智能网联汽车安全实验室 (ivis)</title>
+    <title>科研动态 - 信息安全实验室 (ivis)</title>
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/navigation.css">
     <style>
@@ -19,14 +19,15 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
             height: 100%;
             display: flex;
             flex-direction: column;
         }
         
         .research-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
         
         .research-image {
@@ -39,6 +40,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .research-card:hover .research-image img {
+            transform: scale(1.05);
         }
         
         .video-indicator {
@@ -70,6 +76,7 @@
         .research-title {
             margin-bottom: 0.8rem;
             font-size: 1.3rem;
+            color: var(--primary-color);
         }
         
         .research-meta {
@@ -81,11 +88,49 @@
             font-size: 0.9rem;
         }
         
+        .research-meta .date {
+            display: flex;
+            align-items: center;
+        }
+        
+        .research-meta .date::before {
+            content: '📅';
+            margin-right: 5px;
+        }
+        
         .research-description {
             color: #555;
             margin-bottom: 1.5rem;
             flex-grow: 1;
             line-height: 1.5;
+        }
+        
+        .btn {
+            align-self: flex-start;
+            padding: 0.6rem 1.2rem;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-weight: 500;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .research-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .research-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #555;
         }
         
         @media (max-width: 768px) {
@@ -100,7 +145,7 @@
         <nav id="main-nav">
             <div class="nav-container">
                 <div class="logo">
-                    <a href="../../index.html">智能网联汽车安全实验室 (ivis)</a>
+                    <a href="../../index.html">信息安全实验室 (ivis)</a>
                 </div>
                 <ul class="nav-links">
                     <li><a href="../../index.html">首页</a></li>
@@ -117,97 +162,90 @@
         <section class="hero">
             <div class="container">
                 <h1>科研动态</h1>
-                <p>展示我们实验室的最新研究Demo和技术演示</p>
+                <p>科研成果可视化-成果不仅仅停留在论文上</p>
             </div>
         </section>
 
         <section class="research-updates">
             <div class="container">
+                <div class="research-header">
+                    <h2>创新研究成果展示</h2>
+                    <p>信息安全实验室致力于智能网联与信息安全领域的前沿研究，展示我们最新的技术突破与实际应用成果</p>
+                </div>
+                
                 <div class="research-grid">
                     <div class="research-card">
                         <div class="research-image">
-                            <img src="../../assets/images/video-thumbnail1.jpg" alt="智能座舱与AR-HUD驾驶辅助系统演示">
+                            <img src="../../assets/images/智慧聊天agent系统.png" alt="智慧聊天Agent系统">
                             <div class="video-indicator">视频演示</div>
                         </div>
                         <div class="research-content">
-                            <h3 class="research-title">智能座舱与AR-HUD驾驶辅助系统</h3>
+                            <h3 class="research-title">智慧聊天Agent系统</h3>
                             <div class="research-meta">
-                                <span>2023-12-15</span>
+                                <span class="date">2023-12-15</span>
                             </div>
-                            <p class="research-description">该系统通过AR眼镜技术与车载信息显示系统相结合，为驾驶者提供实时的导航、车道保持、前车距离等关键信息，提升驾驶安全性和便捷性。</p>
-                            <a href="demo1.html" class="btn">查看详情</a>
+                            <p class="research-description">自研设计开发板，打通软件与硬件协同功能，通过远端大模型API提升模型语言理解能力，可实现ChatGPT、Qwen与本地服务器接口根据需求配置与切换，支持深度思考与快速响应两种模式。</p>
+                            <a href="./智慧聊天Agent系统.html" class="btn">查看详情</a>
                         </div>
                     </div>
                     
                     <div class="research-card">
                         <div class="research-image">
-                            <img src="../../assets/images/video-thumbnail2.jpg" alt="具身智能底盘技术演示">
+                            <img src="../../assets/images/专业咨询领域agent.png" alt="专业领域咨询Agent系统">
                             <div class="video-indicator">视频演示</div>
                         </div>
                         <div class="research-content">
-                            <h3 class="research-title">具身智能底盘技术</h3>
+                            <h3 class="research-title">专业领域咨询Agent系统</h3>
                             <div class="research-meta">
-                                <span>2023-11-20</span>
+                                <span class="date">2023-11-20</span>
                             </div>
-                            <p class="research-description">基于大模型技术的具身智能底盘，实现语音控制与物体识别抓取功能。演示系统能够根据语音指令自主导航，识别并抓取指定物体。</p>
-                            <a href="demo2.html" class="btn">查看详情</a>
+                            <p class="research-description">针对宇树机器人，配置自研垂直领域自研LLM或开源API，配合RAG与监督微调技术，实现私有数据库适配，避免隐私泄露。已经协助中电科29所实现"孤岛机"部署。</p>
+                            <a href="./专业领域咨询Agent系统.html" class="btn">查看详情</a>
                         </div>
                     </div>
                     
                     <div class="research-card">
                         <div class="research-image">
-                            <img src="../../assets/images/hardware-security-demo.jpg" alt="TSN指纹加密演示系统">
-                        </div>
-                        <div class="research-content">
-                            <h3 class="research-title">TSN指纹加密演示系统</h3>
-                            <div class="research-meta">
-                                <span>2023-10-25</span>
-                            </div>
-                            <p class="research-description">展示具有唯一性、抗干扰能力强的硬件加密技术，通过硬件化和小型化设计实现车载环境的高效安全部署，确保车辆核心数据安全。</p>
-                            <a href="hardware-demo.html" class="btn">查看详情</a>
-                        </div>
-                    </div>
-                    
-                    <div class="research-card">
-                        <div class="research-image">
-                            <img src="../../assets/images/embodied-demo.jpg" alt="自主导航具身智能底盘">
-                        </div>
-                        <div class="research-content">
-                            <h3 class="research-title">自主导航具身智能底盘</h3>
-                            <div class="research-meta">
-                                <span>2023-09-18</span>
-                            </div>
-                            <p class="research-description">展示具有外观专利的智能底盘原型，支持语音指令控制，能够完成自主导航和物体抓取任务，为智能网联汽车提供底层技术支持。</p>
-                            <a href="embodied-demo.html" class="btn">查看详情</a>
-                        </div>
-                    </div>
-                    
-                    <div class="research-card">
-                        <div class="research-image">
-                            <img src="../../assets/images/ar-hud-demo.jpg" alt="AR-HUD驾驶辅助系统">
-                        </div>
-                        <div class="research-content">
-                            <h3 class="research-title">AR-HUD驾驶辅助系统</h3>
-                            <div class="research-meta">
-                                <span>2023-08-05</span>
-                            </div>
-                            <p class="research-description">基于ROS平台开发的AR-HUD系统，支持实时路况识别、导航信息显示和驾驶辅助功能，通过增强现实技术提升驾驶安全性。</p>
-                            <a href="ar-hud-demo.html" class="btn">查看详情</a>
-                        </div>
-                    </div>
-                    
-                    <div class="research-card">
-                        <div class="research-image">
-                            <img src="../../assets/images/defense-demo.jpg" alt="无人机协同通信系统">
+                            <img src="../../assets/images/基于mcp的语音控制系统.png" alt="基于mcp的语音控制系统">
                             <div class="video-indicator">视频演示</div>
                         </div>
                         <div class="research-content">
-                            <h3 class="research-title">无人机协同通信系统</h3>
+                            <h3 class="research-title">基于mcp的语音控制系统</h3>
                             <div class="research-meta">
-                                <span>2023-07-12</span>
+                                <span class="date">2023-10-25</span>
                             </div>
-                            <p class="research-description">面向国防安全的无人机协同通信技术，支持多无人机编队飞行和安全数据传输，已与国内多家科研院所建立合作关系。</p>
-                            <a href="defense-demo.html" class="btn">查看详情</a>
+                            <p class="research-description">通过大模型理解语音指令，实现底盘控制与机械臂控制，自研设计相关控制板根据意图顺序执行控制指令。系统响应迅速，精准识别用户意图并执行相应操作。</p>
+                            <a href="基于mcp的语音控制系统.html" class="btn">查看详情</a>
+                        </div>
+                    </div>
+                    
+                    <div class="research-card">
+                        <div class="research-image">
+                            <img src="../../assets/images/智慧会议.png" alt="智能会议大模型系统">
+                            <!-- <div class="video-indicator">视频演示</div> -->
+                        </div>
+                        <div class="research-content">
+                            <h3 class="research-title">智能会议大模型系统</h3>
+                            <div class="research-meta">
+                                <span class="date">2023-09-18</span>
+                            </div>
+                            <p class="research-description">支持语音会议室预定、与会人员声纹识别，全自动记录会议内容要点整理与会议结论搜集，会后会议纪要和结论的发送。采用麦克风阵列与华为板卡技术，高效准确地管理会议流程。</p>
+                            <a href="智能会议大模型系统.html" class="btn">查看详情</a>
+                        </div>
+                    </div>
+                    
+                    <div class="research-card">
+                        <div class="research-image">
+                            <img src="../../assets/images/机器人遥操作.png" alt="机器人遥操作系统">
+                            <!-- <div class="video-indicator">视频演示</div> -->
+                        </div>
+                        <div class="research-content">
+                            <h3 class="research-title">机器人遥操作系统</h3>
+                            <div class="research-meta">
+                                <span class="date">2023-08-05</span>
+                            </div>
+                            <p class="research-description">宇树机器人G1+Vision Pro+灵巧手实现遥抓取，可应用于危险控制场景，并实现末端精细化操作。未来规划包括机器自主物体识别与抓取(VLA与模仿学习)，以及人形步态的训练。</p>
+                            <a href="机器人遥操作系统.html" class="btn">查看详情</a>
                         </div>
                     </div>
                 </div>
@@ -236,7 +274,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 智能网联汽车安全实验室 (ivis). 保留所有权利.</p>
+                <p>&copy; 2023 信息安全实验室 (ivis). 保留所有权利.</p>
             </div>
         </div>
     </footer>

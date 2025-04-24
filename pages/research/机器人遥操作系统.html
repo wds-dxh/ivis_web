@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>机器人遥操作系统 - 信息安全实验室 (ivis)</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/navigation.css">
+    <style>
+        /* 成果详情页特定样式 */
+        .achievement-detail {
+            padding: 3rem 0;
+        }
+        
+        .achievement-header {
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+        
+        .achievement-header h1 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-size: 2.2rem;
+        }
+        
+        .achievement-meta {
+            color: #666;
+            font-size: 0.95rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .meta-item i {
+            margin-right: 0.5rem;
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+        
+        .achievement-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .achievement-media {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .achievement-media img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .achievement-video {
+            aspect-ratio: 16/9;
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            overflow: hidden;
+            background-color: #000;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+            position: relative;
+        }
+        
+        .achievement-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .achievement-description {
+            line-height: 1.8;
+        }
+        
+        .achievement-description h2 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .achievement-description h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .achievement-description p {
+            margin-bottom: 1.2rem;
+        }
+        
+        .tech-specs {
+            margin-top: 2.5rem;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .tech-specs h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .spec-label {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        .spec-value {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+        
+        .workflow-section {
+            margin-top: 3rem;
+            text-align: center;
+        }
+        
+        .workflow-image {
+            max-width: 100%;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .workflow-image img {
+            width: 100%;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .back-link:hover {
+            color: var(--secondary-color);
+        }
+        
+        .back-link::before {
+            content: '←';
+            margin-right: 0.5rem;
+        }
+        
+        .related-achievements {
+            margin-top: 4rem;
+        }
+        
+        .related-achievements h2 {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .achievement-card {
+            background-color: var(--card-background);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        .achievement-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .achievement-card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .achievement-card h3 {
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+        
+        .achievement-card p {
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            font-size: 0.95rem;
+            color: #555;
+        }
+        
+        .btn {
+            align-self: flex-start;
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .usage-scenarios {
+            margin: 2rem 0;
+        }
+        
+        .scenarios-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .scenario-item {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .scenario-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .scenario-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .scenario-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
+        }
+        
+        .key-features {
+            margin: 2rem 0;
+        }
+        
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .feature-item {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .feature-title i {
+            margin-right: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .feature-description {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .interaction-modes {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .interaction-modes h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .modes-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        
+        .mode-item {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .mode-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .mode-description {
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        @media (max-width: 768px) {
+            .achievement-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .achievement-media {
+                order: -1;
+                margin-bottom: 1.5rem;
+            }
+            
+            .scenarios-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav id="main-nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="../../index.html">信息安全实验室 (ivis)</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="../../index.html">首页</a></li>
+                    <li><a href="index.html" class="active">科研动态</a></li>
+                    <li><a href="../communication/index.html">开放交流</a></li>
+                    <li><a href="../news/index.html">新闻中心</a></li>
+                    <li><a href="../directions/index.html">研究方向</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="achievement-detail">
+            <div class="container">
+                <a href="index.html" class="back-link">返回科研动态</a>
+                
+                <div class="achievement-header">
+                    <h1>机器人遥操作系统</h1>
+                    <div class="achievement-meta">
+                        <div class="meta-item">
+                            <i>📅</i>
+                            <span>发布日期: 2023年11月12日</span>
+                        </div>
+                        <div class="meta-item">
+                            <i>🔬</i>
+                            <span>研究领域: 机器人控制</span>
+                        </div>
+                        <div class="meta-item">
+                             
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="achievement-content">
+                    <div class="achievement-description">
+                        <h2>系统概述</h2>
+                        <p>机器人遥操作系统是一套先进的远程机器人操控方案，通过结合宇树机器人G1、Apple Vision Pro和灵巧手技术，实现了高精度、低延迟的远程操作体验。该系统尤其适用于危险、极端或人类难以到达的环境，通过直观的沉浸式虚拟现实界面，让操作者可以精确控制远端机器人执行复杂任务。</p>
+                        
+                        <p>通过此系统，操作者可以：</p>
+                        <ul>
+                            <li>通过Vision Pro实时查看机器人第一人称视角</li>
+                            <li>利用手势精确控制机械臂和灵巧手</li>
+                            <li>感受物体触觉反馈，实现精细化抓取操作</li>
+                            <li>在危险环境中安全执行任务</li>
+                            <li>完成需要高精度的装配与操作任务</li>
+                        </ul>
+                        
+                        <h2>核心技术</h2>
+                        <p>我们的遥操作系统集成了多项前沿技术，共同构建了一个高度沉浸且实用的远程控制解决方案：</p>
+                        
+                        <div class="key-features">
+                            <div class="features-list">
+                                <div class="feature-item">
+                                    <div class="feature-title"><i>🥽</i> 沉浸式视觉反馈</div>
+                                    <div class="feature-description">通过Apple Vision Pro的高分辨率显示和立体视觉技术，操作者可获得机器人视角的实时3D场景。多个摄像头提供全方位视野，确保操作精度和安全性。</div>
+                                </div>
+                                
+                                <div class="feature-item">
+                                    <div class="feature-title"><i>👐</i> 高精度手势映射</div>
+                                    <div class="feature-description">利用先进的手势追踪算法，将操作者的手部动作精确映射到灵巧手上，实现直观的抓取、旋转和精细操控，响应延迟低于50ms。</div>
+                                </div>
+                                
+                                <div class="feature-item">
+                                    <div class="feature-title"><i>🤖</i> 宇树G1机器人平台</div>
+                                    <div class="feature-description">采用高性能的宇树G1机器人作为基础平台，集成了稳定的移动底盘、多自由度机械臂和灵巧手抓取系统，可适应各种复杂环境。</div>
+                                </div>
+                                
+                                <div class="feature-item">
+                                    <div class="feature-title"><i>📡</i> 低延迟通信</div>
+                                    <div class="feature-description">特殊设计的通信协议和数据压缩算法，确保控制信号和视觉反馈实时传输，即使在网络条件不佳的情况下也能保持稳定。</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="interaction-modes">
+                            <h3>交互模式</h3>
+                            <div class="modes-list">
+                                <div class="mode-item">
+                                    <div class="mode-name">直接控制模式</div>
+                                    <div class="mode-description">操作者手部动作1:1映射到机器人灵巧手，适用于精确操作任务。</div>
+                                </div>
+                                <div class="mode-item">
+                                    <div class="mode-name">辅助增强模式</div>
+                                    <div class="mode-description">系统自动优化操作者指令，补偿抖动，提高精度，适合微操作场景。</div>
+                                </div>
+                                <div class="mode-item">
+                                    <div class="mode-name">半自动模式</div>
+                                    <div class="mode-description">操作者指定目标，系统自动规划路径和抓取姿态，适合重复性任务。</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-specs">
+                            <h3>系统规格</h3>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <div class="spec-label">操作延迟</div>
+                                    <div class="spec-value">&lt;50ms</div>
+                                </div>
+                                <div class="spec-item">
+                                    <div class="spec-label">灵巧手自由度</div>
+                                    <div class="spec-value">18自由度</div>
+                                </div>
+                                <div class="spec-item">
+                                    <div class="spec-label">最大操作距离</div>
+                                    <div class="spec-value">全球范围</div>
+                                </div>
+                                <div class="spec-item">
+                                    <div class="spec-label">位置精度</div>
+                                    <div class="spec-value">±0.3mm</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="achievement-media">
+                        <!-- <img src="../../assets/images/video-thumbnail5.jpg" alt="机器人遥操作系统"> -->
+                        
+                        <div class="achievement-video">
+                            <!-- 机器人遥操作系统视频 -->
+                            <!-- 给出用户提示：点击播放按钮后，视频会自动播放 -->
+                            <video src="../../assets/video/机器人遥操作.mp4" controls preload="metadata" poster="../../assets/images/机器人遥操作.png" width="100%" height="100%" style="object-fit: contain; display: block; position: absolute; top: 0; left: 0;"></video>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="usage-scenarios">
+                    <h2>应用场景</h2>
+                    <p>机器人遥操作系统可应用于多种具有挑战性的环境和任务：</p>
+                    
+                    <div class="scenarios-grid">
+                        <div class="scenario-item">
+                            <div class="scenario-icon">☢️</div>
+                            <h3 class="scenario-title">危险环境作业</h3>
+                            <p>核设施维护、化学品处理、灾害现场救援等高危环境下的精细操作任务</p>
+                        </div>
+                        
+                        <div class="scenario-item">
+                            <div class="scenario-icon">🔬</div>
+                            <h3 class="scenario-title">远程微操作</h3>
+                            <p>远程外科手术辅助、精密仪器校准、微电子元件装配等需要高精度的操作</p>
+                        </div>
+                        
+                        <div class="scenario-item">
+                            <div class="scenario-icon">🚀</div>
+                            <h3 class="scenario-title">极端环境探索</h3>
+                            <p>深海、太空或其他极端环境下的设备维护、样本收集和科学实验</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- <div class="workflow-section">
+                    <h2>系统架构</h2>
+                    <p>遥操作系统由以下主要组件构成，共同实现流畅的远程控制体验：</p>
+                    
+                    <div class="workflow-image">
+                        <img src="../../assets/images/workflow-teleoperation.jpg" alt="遥操作系统架构图" onerror="this.src='../../assets/images/video-thumbnail5.jpg'">
+                    </div>
+                    
+                    <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #666; text-align: center;">机器人遥操作系统架构示意图</p>
+                </div> -->
+                
+                <div class="related-achievements">
+                    <h2>相关研究成果</h2>
+                    <div class="achievements-grid">
+                        <div class="achievement-card">
+                            <img src="../../assets/images/基于mcp的语音控制系统.png" alt="基于mcp的语音控制系统">
+                            <div class="achievement-card-content">
+                                <h3>基于mcp的语音控制系统</h3>
+                                <p>一套完整的语音交互控制解决方案，能够准确识别用户的语音指令，并实时控制底盘移动与机械臂操作。</p>
+                                <a href="基于mcp的语音控制系统.html" class="btn">查看详情</a>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-card">
+                            <img src="../../assets/images/智慧会议.png" alt="智能会议大模型系统">
+                            <div class="achievement-card-content">
+                                <h3>智能会议大模型系统</h3>
+                                <p>支持实时会议记录、智能总结与分析，会议内容一键转为文档，生成会议纪要和行动计划。</p>
+                                <a href="智能会议大模型系统.html" class="btn">查看详情</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>联系我们</h3>
+                    <p>地址：重庆市渝北区两江大道9号-科研楼B205</p>
+                    <p>电话：023-67952817</p>
+                    <p>邮箱：xiangpengli.cs@gmail.com</p>
+                </div>
+                <div class="footer-links">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="../../index.html">首页</a></li>
+                        <li><a href="index.html">科研动态</a></li>
+                        <li><a href="../communication/index.html">开放交流</a></li>
+                        <li><a href="../news/index.html">新闻中心</a></li>
+                        <li><a href="../directions/index.html">研究方向</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 信息安全实验室 (ivis). 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html> 

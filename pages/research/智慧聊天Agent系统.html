@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧聊天Agent系统 - 信息安全实验室 (ivis)</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/navigation.css">
+    <style>
+        /* 成果详情页特定样式 */
+        .achievement-detail {
+            padding: 3rem 0;
+        }
+
+        .achievement-header {
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        .achievement-header h1 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-size: 2.2rem;
+        }
+
+        .achievement-meta {
+            color: #666;
+            font-size: 0.95rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .meta-item i {
+            margin-right: 0.5rem;
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+
+        .achievement-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .achievement-media {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .achievement-media img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .achievement-video {
+            aspect-ratio: 16/9;
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            overflow: hidden;
+            background-color: #000;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+
+        .achievement-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .achievement-description {
+            line-height: 1.8;
+        }
+
+        .achievement-description h2 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .achievement-description h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .achievement-description p {
+            margin-bottom: 1.2rem;
+        }
+
+        .tech-specs {
+            margin-top: 2.5rem;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .tech-specs h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .spec-label {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .spec-value {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+
+        .workflow-section {
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .workflow-image {
+            max-width: 100%;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .workflow-image img {
+            width: 100%;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--secondary-color);
+        }
+
+        .back-link::before {
+            content: '←';
+            margin-right: 0.5rem;
+        }
+
+        .related-achievements {
+            margin-top: 4rem;
+        }
+
+        .related-achievements h2 {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .achievement-card {
+            background-color: var(--card-background);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .achievement-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .achievement-card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .achievement-card h3 {
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .achievement-card p {
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .btn {
+            align-self: flex-start;
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .achievement-content {
+                grid-template-columns: 1fr;
+            }
+
+            .achievement-media {
+                order: -1;
+                margin-bottom: 1.5rem;
+            }
+
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav id="main-nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="../../index.html">信息安全实验室 (ivis)</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="../../index.html">首页</a></li>
+                    <li><a href="index.html" class="active">科研动态</a></li>
+                    <li><a href="../communication/index.html">开放交流</a></li>
+                    <li><a href="../news/index.html">新闻中心</a></li>
+                    <li><a href="../directions/index.html">研究方向</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="achievement-detail">
+            <div class="container">
+                <a href="index.html" class="back-link">返回科研动态</a>
+
+                <div class="achievement-header">
+                    <h1>智慧聊天Agent系统</h1>
+                    <div class="achievement-meta">
+                        <div class="meta-item">
+                            <i>📅</i>
+                            <span>发布日期: 2023年12月15日</span>
+                        </div>
+                        <div class="meta-item">
+                            <i>🔬</i>
+                            <span>研究领域: 人工智能对话系统</span>
+                        </div>
+                        <div class="meta-item">
+                             
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievement-content">
+                    <div class="achievement-description">
+                        <h2>技术亮点</h2>
+                        <p>智慧聊天Agent系统是我实验室自主研发的新一代智能对话系统，集成了软硬件协同设计、多模型接入和双模式对话等创新特性。该系统通过自研开发板打通了软件与硬件协同功能，为用户提供流畅自然的智能对话体验。
+                        </p>
+
+                        <p>系统的核心优势包括:</p>
+                        <ul>
+                            <li>自研设计开发板，打通软件+硬件协同功能</li>
+                            <li>通过远端大模型API提升模型语言理解能力</li>
+                            <li>兼容多种大模型：可实现ChatGPT、Qwen与本地服务器接口根据需求配置与切换</li>
+                            <li>支持深度思考与快速响应两种模式，适应不同场景需求</li>
+                        </ul>
+
+                        <h2>技术指标</h2>
+                        <p>经过严格的性能测试，智慧聊天Agent系统达到了业界先进水平，主要技术指标如下:</p>
+                        <ul>
+                            <li>实现首token回复速度小于2s</li>
+                            <li>自有验证集合上问题与回复的相关性不低于95%</li>
+                            <li>准确率不低于90%</li>
+                        </ul>
+
+                        <div class="tech-specs">
+                            <h3>系统规格</h3>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <div class="spec-label">处理器</div>
+                                    <div class="spec-value">自研嵌入式AI开发板</div>
+                                </div>
+                                <div class="spec-item">
+                                    <div class="spec-label">语音识别</div>
+                                    <div class="spec-value">多麦克风阵列</div>
+                                </div>
+                                <div class="spec-item">
+                                    <div class="spec-label">对话延迟</div>
+                                    <div class="spec-value">
+                                        < 2秒</div>
+                                    </div>
+                                    <div class="spec-item">
+                                        <div class="spec-label">响应准确率</div>
+                                        <div class="spec-value">90%+</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="achievement-media">
+                            <!-- <img src="../../assets/images/智慧聊天agent系统.png" alt="智慧聊天Agent系统"> -->
+
+                            <div class="achievement-video">
+                                <!-- 智慧聊天Agent系统视频 -->
+                                <!-- 给出用户提示：点击播放按钮后，视频会自动播放 -->
+                                <video src="../../assets/video/智慧聊天Agent系统.mp4" controls preload="metadata"
+                                    poster="../../assets/images/智慧聊天agent系统.png" width="100%" height="100%"
+                                    style="object-fit: contain; display: block; position: absolute; top: 0; left: 0;"></video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="workflow-section">
+                        <h2>系统工作流程</h2>
+                        <p>智慧聊天Agent系统采用语音交互为主要输入方式，依托远端大模型进行语义理解与智能回复，整体流程如下:</p>
+
+                        <div class="workflow-image">
+                            <img src="../../assets/images/workflow-chat-agent.jpg" alt="智慧聊天Agent工作流程图"
+                                onerror="this.src='../../assets/images/video-thumbnail1.jpg'">
+                        </div>
+
+                        <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #666; text-align: center;">
+                            智慧聊天Agent系统工作流程示意图</p>
+                    </div> -->
+
+                    <div class="related-achievements">
+                        <h2>相关研究成果</h2>
+                        <div class="achievements-grid">
+                            <div class="achievement-card">
+                                <img src="../../assets/images/专业咨询领域agent.png" alt="专业领域咨询Agent系统">
+                                <div class="achievement-card-content">
+                                    <h3>专业领域咨询Agent系统</h3>
+                                    <p>针对宇树机器人，配置自研垂直领域自研LLM或开源API，配合RAG与监督微调技术，实现私有数据库适配，避免隐私泄露。</p>
+                                    <a href="专业领域咨询Agent系统.html" class="btn">查看详情</a>
+                                </div>
+                            </div>
+
+                            <div class="achievement-card">
+                                <img src="../../assets/images/基于mcp的语音控制系统.png" alt="基于mcp的语音控制系统">
+                                <div class="achievement-card-content">
+                                    <h3>基于mcp的语音控制系统</h3>
+                                    <p>通过大模型理解语音指令，实现底盘控制与机械臂控制，自研设计相关控制板根据意图顺序执行控制指令。</p>
+                                    <a href="基于mcp的语音控制系统.html" class="btn">查看详情</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>联系我们</h3>
+                    <p>地址：重庆市渝北区两江大道9号-科研楼B205</p>
+                    <p>电话：023-67952817</p>
+                    <p>邮箱：xiangpengli.cs@gmail.com</p>
+                </div>
+                <div class="footer-links">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="../../index.html">首页</a></li>
+                        <li><a href="index.html">科研动态</a></li>
+                        <li><a href="../communication/index.html">开放交流</a></li>
+                        <li><a href="../news/index.html">新闻中心</a></li>
+                        <li><a href="../directions/index.html">研究方向</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 信息安全实验室 (ivis). 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第七届网络安全前沿国际会议(FCS 2024) - 信息安全实验室 (IVIS)</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/navigation.css">
+    <style>
+        /* 详情页特定样式 */
+        .event-details {
+            background-color: var(--card-background);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+        }
+
+        .event-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .event-header h1 {
+            margin-bottom: 1rem;
+        }
+
+        .event-meta-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .meta-item i {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .event-body {
+            padding: 2rem;
+        }
+
+        .event-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .event-section h2 {
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .schedule {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .schedule-day {
+            margin-bottom: 1.5rem;
+        }
+
+        .schedule-day-header {
+            background-color: #f5f5f5;
+            padding: 1rem;
+            font-weight: 600;
+        }
+
+        .schedule-item {
+            display: flex;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .schedule-item:last-child {
+            border-bottom: none;
+        }
+
+        .schedule-time {
+            min-width: 150px;
+            padding-right: 1rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .speakers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .speaker-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .speaker-info {
+            padding: 1.5rem;
+        }
+
+        .speaker-name {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .speaker-affiliation {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .location-map {
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 1.5rem;
+        }
+
+        .btn-register {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin-top: 1rem;
+            transition: background-color var(--transition-speed);
+        }
+
+        .btn-register:hover {
+            background-color: #e08800;
+            color: white;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .back-link::before {
+            content: '←';
+            margin-right: 0.5rem;
+        }
+
+        .important-dates {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .date-item {
+            background-color: #f5f5f5;
+            padding: 1rem;
+            border-radius: 8px;
+            flex: 1;
+            min-width: 200px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .date-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .date-item h4::before {
+            content: '📅';
+            margin-right: 0.5rem;
+        }
+
+        .external-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .external-link::after {
+            content: '↗';
+            margin-left: 0.3rem;
+            font-size: 0.8em;
+        }
+
+        .external-link:hover {
+            color: var(--secondary-color);
+        }
+
+        .forum-section {
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+
+        .forum-title {
+            display: flex;
+            align-items: center;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .forum-title::before {
+            content: '💬';
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav id="main-nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="../../index.html">信息安全实验室 (ivis)</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="../../index.html">首页</a></li>
+                    <li><a href="../research/index.html">科研动态</a></li>
+                    <li><a href="index.html" class="active">开放交流</a></li>
+                    <li><a href="../news/index.html">新闻中心</a></li>
+                    <li><a href="../directions/index.html">研究方向</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <a href="index.html" class="back-link">返回开放交流</a>
+
+            <div class="event-details">
+                <div class="event-header">
+                    <h1>第七届网络安全前沿国际会议(FCS 2024)</h1>
+                    <p>网络安全研究与教育前沿探索</p>
+
+                    <div class="event-meta-info">
+                        <div class="meta-item">
+                            <i>📅</i>
+                            <span>2024年7月26日 - 28日</span>
+                        </div>
+                        <div class="meta-item">
+                            <i>📍</i>
+                            <span>中国重庆市</span>
+                        </div>
+                        <div class="meta-item">
+                            <i>🏢</i>
+                            <span>主办方: 重庆大学计算机学院</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-body">
+                    <div class="event-section">
+                        <h2>会议简介</h2>
+                        <p>第七届网络安全前沿国际会议(FCS 2024)将由重庆大学主办，郑州轻工业大学协办。会议将于2024年7月26日至28日在中国重庆举行。</p>
+                        <p>网络安全越来越受到业界和学术界的重视。网络安全新技术不断涌现，许多大学和机构都成立了网络安全研究中心或学院，政府和企业都大力支持网络安全的教学和研究。然而，如何开展网络安全的研究和教育是缺乏经验的，如何经营一个网络安全中心也是值得探索的，因为它涉及到许多部门。</p>
+                        <p>FCS会议为研究人员和从业人员交流最新的网络安全研究成果提供了一个良好的平台。</p>
+
+                        <div class="important-dates">
+                            <div class="date-item">
+                                <h4>征稿截止</h4>
+                                <p>2024年4月21日</p>
+                            </div>
+                            <div class="date-item">
+                                <h4>注册截止</h4>
+                                <p>2024年6月20日</p>
+                            </div>
+                            <div class="date-item">
+                                <h4>大会时间</h4>
+                                <p>2024年7月26-28日</p>
+                            </div>
+                        </div>
+
+                        <div class="registration-info">
+                            <h3>会议出版</h3>
+                            <p>会议论文集将由Springer Communications in Computer and Information Science (CCIS)出版，EI收录。</p>
+                            <h3>会议官网</h3>
+                            <p><a href="https://fcs2024.github.io/index.html" class="external-link" target="_blank">https://fcs2024.github.io/index.html</a></p>
+                            <h3>报名参会</h3>
+                            <p>如果您有兴趣参加本次会议，请通过以下方式：</p>
+                            <a href="https://fcs2024.github.io/index.html" class="btn-register" target="_blank">在线报名</a>
+                            <p class="mt-2">或发送邮件至 <a href="mailto:FCS2024_cq@163.com">FCS2024_cq@163.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="event-section">
+                        <h2>会议议程</h2>
+
+                        <div class="schedule">
+                            <div class="schedule-day">
+                                <div class="schedule-day-header">7月26日（星期五）</div>
+                                <div class="schedule-item">
+                                    <div class="schedule-time">13:00 - 20:00</div>
+                                    <div class="schedule-content">
+                                        <div class="schedule-title">会议现场注册</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="schedule-day">
+                                <div class="schedule-day-header">7月27日（星期六）</div>
+                                <div class="schedule-item">
+                                    <div class="schedule-time">上午</div>
+                                    <div class="schedule-content">
+                                        <div class="schedule-title">开幕式，合影（报告厅或其他地方）</div>
+                                    </div>
+                                </div>
+                                <div class="schedule-item">
+                                    <div class="schedule-time"></div>
+                                    <div class="schedule-content">
+                                        <div class="schedule-title">大会主席致辞</div>
+                                    </div>
+                                </div>
+                                <div class="schedule-item">
+                                    <div class="schedule-time"></div>
+                                    <div class="schedule-content">
+                                        <div class="schedule-title">重庆大学领导致辞</div>
+                                    </div>
+                                </div>
+                                <div class="schedule-item">
+                                    <div class="schedule-time"></div>
+                                    <div class="schedule-content">
+                                        <div class="schedule-title">大会主题报告</div>
+                                    </div>
+                                </div>
+                                <div class="schedule-item">
+                                    <div class="schedule-time"></div>
+                                    <div class="schedule-content">
+                                        <div class="schedule-title">茶歇</div>
+                                    </div>
+                                </div>
+                                <div class="schedule-item">
+                                    <div class="schedule-time"></div>
+                                    <div class="schedule-content">
+                                        <div class="schedule-title">大会主题报告</div>
+                                    </div>
+                                </div>
+                                <div class="schedule-item">
+                                    <div class="schedule-time">下午</div>
+                                    <div class="schedule-content">
+                                        <div class="schedule-title">分论坛1：机器学习、区块链、差分隐私</div>
+                                    </div>
+                                </div>
+                                <div class="schedule-item">
+                                    <div class="schedule-time"></div>
+                                    <div class="schedule-content">
+                                        <div class="schedule-title">分论坛2：密码和物联网</div>
+                                    </div>
+                                </div>
+                                <div class="schedule-item">
+                                    <div class="schedule-time"></div>
+                                    <div class="schedule-content">
+                                        <div class="schedule-title">晚宴</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="schedule-day">
+                                <div class="schedule-day-header">7月28日（星期日）</div>
+                                <div class="schedule-item">
+                                    <div class="schedule-time">8:30 - 12:00</div>
+                                    <div class="schedule-content">
+                                        <div class="schedule-title">圆桌论坛/学院参观</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="event-section">
+                        <h2>研讨主题</h2>
+                        <div class="forum-section">
+                            <h3 class="forum-title">分论坛1</h3>
+                            <p>机器学习、区块链、差分隐私</p>
+                            <p>本分论坛将探讨机器学习在网络安全中的应用，区块链技术的安全挑战，以及差分隐私在数据保护方面的最新进展。</p>
+                        </div>
+                        
+                        <div class="forum-section">
+                            <h3 class="forum-title">分论坛2</h3>
+                            <p>密码和物联网</p>
+                            <p>本分论坛将讨论现代密码学的发展趋势，物联网安全面临的挑战与解决方案，以及两者的交叉研究领域。</p>
+                        </div>
+                        
+                        <div class="forum-section">
+                            <h3 class="forum-title">圆桌论坛</h3>
+                            <p>网络安全研究与教育</p>
+                            <p>本论坛将邀请学术界和产业界专家共同探讨网络安全研究的最新趋势以及如何有效开展网络安全教育，分享经验与挑战。</p>
+                        </div>
+                    </div>
+
+                    <div class="event-section">
+                        <h2>联系方式</h2>
+                        <p>相关问题可以咨询会务陈老师</p>
+                        <p>联系邮箱：<a href="mailto:FCS2024_cq@163.com">FCS2024_cq@163.com</a></p>
+                        <p>会议官网：<a href="https://fcs2024.github.io/index.html" class="external-link" target="_blank">https://fcs2024.github.io/index.html</a></p>
+                        
+                        <div class="location-map">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3469.0366430921295!2d106.50408251499978!3d29.592559782069986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x369334b980000001%3A0x5b9b9b1638383c8c!2z6YeN5bqG5aSn5a2m!5e0!3m2!1szh-CN!2scn!4v1634976812345!5m2!1szh-CN!2scn" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>联系我们</h3>
+                    <p>地址：重庆市渝北区两江大道9号-科研楼B205</p>
+                    <p>电话：023-67952817</p>
+                    <p>邮箱：xiangpengli.cs@gmail.com</p>
+                </div>
+                <div class="footer-links">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="../../index.html">首页</a></li>
+                        <li><a href="../research/index.html">科研动态</a></li>
+                        <li><a href="index.html">开放交流</a></li>
+                        <li><a href="../news/index.html">新闻中心</a></li>
+                        <li><a href="../directions/index.html">研究方向</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 信息安全实验室 (ivis). 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+
+</html> 

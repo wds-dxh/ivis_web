@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>卓工面对面讲座 - 信息安全实验室 (IVIS)</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/navigation.css">
+    <style>
+        /* 详情页特定样式 */
+        .event-details {
+            background-color: var(--card-background);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+        }
+
+        .event-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .event-header h1 {
+            margin-bottom: 1rem;
+        }
+
+        .event-meta-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .meta-item i {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .event-body {
+            padding: 2rem;
+        }
+
+        .event-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .event-section h2 {
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .speaker-profile {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .speaker-image {
+            flex: 0 0 200px;
+            height: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 2rem;
+        }
+
+        .speaker-bio {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .speaker-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .speaker-title {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .topic-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 1.5rem;
+        }
+
+        .topic-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .topic-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .registration-form {
+            background-color: #f9f9f9;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .btn-submit {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color var(--transition-speed);
+        }
+
+        .btn-submit:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .location-map {
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 1.5rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .back-link::before {
+            content: '←';
+            margin-right: 0.5rem;
+        }
+
+        .past-lectures {
+            margin-top: 3rem;
+        }
+
+        .past-lectures-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .past-lecture-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform var(--transition-speed);
+        }
+
+        .past-lecture-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .past-lecture-info {
+            padding: 1.5rem;
+        }
+
+        .past-lecture-date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .past-lecture-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .past-lecture-speaker {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .event-meta-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .speaker-profile {
+                flex-direction: column;
+            }
+
+            .speaker-image {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav id="main-nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="../../index.html">信息安全实验室 (ivis)</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="../../index.html">首页</a></li>
+                    <li><a href="../research/index.html">科研动态</a></li>
+                    <li><a href="index.html" class="active">开放交流</a></li>
+                    <li><a href="../news/index.html">新闻中心</a></li>
+                    <li><a href="../directions/index.html">研究方向</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <a href="index.html" class="back-link">返回开放交流</a>
+
+            <div class="event-details">
+                <div class="event-header">
+                    <h1>卓工面对面</h1>
+                    <p>智能体基础与具身智能研究前沿</p>
+
+                    <div class="event-meta-info">
+                        <div class="meta-item">
+                            <i>📅</i>
+                            <span>每周三 15:00 - 17:00</span>
+                        </div>
+                        <div class="meta-item">
+                            <i>📍</i>
+                            <span>重庆市渝北区两江大道9号-科研楼B205</span>
+                        </div>
+                        <div class="meta-item">
+                            <i>👤</i>
+                            <span>主讲人: 李向鹏副教授</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-body">
+                    <div class="event-section">
+                        <h2>讲座简介</h2>
+                        <p>"卓工面对面"是我们实验室的定期学术交流活动，旨在为师生提供一个深入探讨前沿科技问题的平台。本期由李向鹏副教授主讲，将聚焦智能体基础与具身智能研究领域，分享最新研究成果和技术动态。
+                        </p>
+                        <p>在当前人工智能快速发展的背景下，智能体技术和具身智能成为了研究热点。本讲座将深入浅出地介绍智能体的基本概念、技术架构和应用场景，并重点探讨具身智能在智能网联汽车领域的创新应用。参与者将有机会了解最前沿的研究动态，并与专家进行面对面交流。
+                        </p>
+                        <p>讲座采用互动式教学模式，鼓励参与者主动提问和讨论，帮助学生更深入地理解相关知识，并启发创新思维。讲座面向所有对智能体和具身智能感兴趣的师生和研究人员开放。</p>
+                    </div>
+
+                    <div class="event-section">
+                        <h2>主讲人介绍</h2>
+                        <div class="speaker-profile">
+                            <div class="speaker-image">
+                                <img src="../../assets/images/李向鹏副教授.png" alt="李向鹏副教授">
+                            </div>
+                            <div class="speaker-bio">
+                                <div class="speaker-name">李向鹏</div>
+                                <div class="speaker-title">副教授，信息安全实验室</div>
+                                <p>李向鹏博士于2022年毕业于电子科技大学计算机科学与技术专业，师从宋井宽教授。研究兴趣包括计算机视觉、多模态内容理解（视觉问答，视觉描述生成）、跨模态数据检索、多模态大模型等。近年来在TPAMI、TIP、AAAI、ACM MM等国际期刊或会议发表10余篇学术论文，谷歌引用超过1100次，授权专利2项，主持之江实验室“之江国际青年人才基金”项目。具体科研工作点击链接：
+                                    <a href="https://scholar.google.com/citations?user=phH12a4AAAAJ&hl=en&citsig=AMD79orWrWuc47ySUDqpJdO7DiQhNilTYQ" target="_blank">谷歌个人主页</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="event-section">
+                        <h2>方向</h2>
+                        <p>将围绕智能体技术和具身智能展开，主要包括以下方向：</p>
+                        <ul class="topic-list">
+                            <li>智能体技术基础与发展历程</li>
+                            <li>大模型驱动的智能体架构设计</li>
+                            <li>具身智能的核心理念与技术实现</li>
+                            <li>智能体在车载环境中的应用挑战</li>
+                            <li>基于大模型技术的语音控制与物体抓取</li>
+                            <li>具身智能安全底盘的设计与实现</li>
+                            <li>智能体安全与隐私保护</li>
+                            <li>未来研究方向与产业应用前景</li>
+                        </ul>
+                    </div>
+
+                    <div class="event-section">
+                        <h2>参与方式</h2>
+                        <p>卓工面对面每周三下午15:00-17:00在科研楼B205举行，无需提前报名，欢迎所有对智能体和具身智能感兴趣的师生参加。</p>
+
+                    </div>
+
+                    <div class="event-section">
+                        <h2>地点</h2>
+                        <p>重庆市渝北区两江大道9号-科研楼B205</p>
+                        <p>重庆北站-乘坐轨道交通4号线至桐梓林站，步行十分钟即可到达。</p>
+
+                        <div class="location-map">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3469.0366430921295!2d106.50408251499978!3d29.592559782069986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x369334b980000001%3A0x5b9b9b1638383c8c!2z6YeN5bqG5aSn5a2m!5e0!3m2!1szh-CN!2scn!4v1634976812345!5m2!1szh-CN!2scn"
+                                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+
+                    <div class="past-lectures">
+                        <h2>往期讲座回顾</h2>
+                        <div class="past-lectures-grid">
+                            <div class="past-lecture-card">
+                                <div class="past-lecture-info">
+                                    <div class="past-lecture-date">2024年4月10日</div>
+                                    <div class="past-lecture-title">智能座舱与AR-HUD技术前沿</div>
+                                    <div class="past-lecture-speaker">主讲：陈教授</div>
+                                    <p>本次讲座探讨了智能座舱技术与增强现实平视显示系统(AR-HUD)的最新研究成果和应用前景。</p>
+                                </div>
+                            </div>
+                            <div class="past-lecture-card">
+                                <div class="past-lecture-info">
+                                    <div class="past-lecture-date">2024年3月27日</div>
+                                    <div class="past-lecture-title">车载硬件加密技术挑战与机遇</div>
+                                    <div class="past-lecture-speaker">主讲：王博</div>
+                                    <p>本次讲座深入分析了智能网联汽车硬件安全与加密技术面临的挑战和未来发展机遇。</p>
+                                </div>
+                            </div>
+                            <div class="past-lecture-card">
+                                <div class="past-lecture-info">
+                                    <div class="past-lecture-date">2024年3月13日</div>
+                                    <div class="past-lecture-title">多模态大模型在汽车领域的应用</div>
+                                    <div class="past-lecture-speaker">主讲：张研究员</div>
+                                    <p>本次讲座分享了多模态大模型在智能网联汽车领域的创新应用案例和最新研究成果。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>联系我们</h3>
+                    <p>地址：重庆市渝北区两江大道9号-科研楼B205</p>
+                    <p>电话：023-67952817</p>
+                    <p>邮箱：xiangpengli.cs@gmail.com</p>
+                </div>
+                <div class="footer-links">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="../../index.html">首页</a></li>
+                        <li><a href="../research/index.html">科研动态</a></li>
+                        <li><a href="index.html">开放交流</a></li>
+                        <li><a href="../news/index.html">新闻中心</a></li>
+                        <li><a href="../directions/index.html">研究方向</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 信息安全实验室 (ivis). 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+
+</html>

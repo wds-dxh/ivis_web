@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能会议大模型系统 - 信息安全实验室 (ivis)</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/navigation.css">
+    <style>
+        /* 成果详情页特定样式 */
+        .achievement-detail {
+            padding: 3rem 0;
+        }
+
+        .achievement-header {
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        .achievement-header h1 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-size: 2.2rem;
+        }
+
+        .achievement-meta {
+            color: #666;
+            font-size: 0.95rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .meta-item i {
+            margin-right: 0.5rem;
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+
+        .achievement-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .achievement-media {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .achievement-media img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .achievement-video {
+            aspect-ratio: 16/9;
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            overflow: hidden;
+            background-color: #000;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+
+        .achievement-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .achievement-description {
+            line-height: 1.8;
+        }
+
+        .achievement-description h2 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .achievement-description h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .achievement-description p {
+            margin-bottom: 1.2rem;
+        }
+
+        .tech-specs {
+            margin-top: 2.5rem;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .tech-specs h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .spec-label {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .spec-value {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+
+        .workflow-section {
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .workflow-image {
+            max-width: 100%;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .workflow-image img {
+            width: 100%;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--secondary-color);
+        }
+
+        .back-link::before {
+            content: '←';
+            margin-right: 0.5rem;
+        }
+
+        .related-achievements {
+            margin-top: 4rem;
+        }
+
+        .related-achievements h2 {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .achievement-card {
+            background-color: var(--card-background);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .achievement-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .achievement-card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .achievement-card h3 {
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .achievement-card p {
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .btn {
+            align-self: flex-start;
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .feature-content h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .achievement-content {
+                grid-template-columns: 1fr;
+            }
+
+            .achievement-media {
+                order: -1;
+                margin-bottom: 1.5rem;
+            }
+
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav id="main-nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="../../index.html">信息安全实验室 (ivis)</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="../../index.html">首页</a></li>
+                    <li><a href="index.html" class="active">科研动态</a></li>
+                    <li><a href="../communication/index.html">开放交流</a></li>
+                    <li><a href="../news/index.html">新闻中心</a></li>
+                    <li><a href="../directions/index.html">研究方向</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="achievement-detail">
+            <div class="container">
+                <a href="index.html" class="back-link">返回科研动态</a>
+
+                <div class="achievement-header">
+                    <h1>智能会议大模型系统</h1>
+                    <div class="achievement-meta">
+                        <div class="meta-item">
+                            <i>📅</i>
+                            <span>发布日期: 2023年12月5日</span>
+                        </div>
+                        <div class="meta-item">
+                            <i>🔬</i>
+                            <span>研究领域: 智能会议系统</span>
+                        </div>
+                        <div class="meta-item">
+                             
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievement-content">
+                    <div class="achievement-description">
+                        <h2>技术亮点</h2>
+                        <p>智能会议大模型系统是我实验室针对现代会议场景开发的全流程智能化解决方案，整合了语音识别、声纹识别、会议记录和大模型总结等多项前沿技术，实现会议从预定到纪要生成的全程智能化。</p>
+
+                        <p>我们的智能会议系统具备以下核心优势:</p>
+                        <ul>
+                            <li>实现会议室智能预定，支持语音操控和多终端接入</li>
+                            <li>与会人员自动签到，基于声纹识别技术实现身份确认</li>
+                            <li>全程录音录像，通过ASR实时生成会议文字记录</li>
+                            <li>基于大模型技术，自动提取会议要点和关键结论</li>
+                            <li>满足高保密会议需求，支持部署在私网环境中</li>
+                        </ul>
+
+                        <div class="features-list">
+                            <div class="feature-item">
+                                <div class="feature-icon">🗣️</div>
+                                <div class="feature-content">
+                                    <h3>声纹识别</h3>
+                                    <p>自动识别参会人员身份，无需手动签到，提高会议效率和安全性</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">📝</div>
+                                <div class="feature-content">
+                                    <h3>自动记录</h3>
+                                    <p>实时转写会议内容，精准捕捉每一句话，无遗漏无错误</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">🤖</div>
+                                <div class="feature-content">
+                                    <h3>智能总结</h3>
+                                    <p>大模型自动识别会议重点，生成结构化会议纪要，节省时间</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">🔒</div>
+                                <div class="feature-content">
+                                    <h3>安全可控</h3>
+                                    <p>支持私有化部署，确保数据安全，满足敏感会议需求</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2>技术指标</h2>
+                        <p>经过严格测试，我们的智能会议系统在各项性能指标上表现优异:</p>
+                        <ul>
+                            <li>ASR实时转写准确率超过95%</li>
+                            <li>声纹识别准确率高于98%</li>
+                            <li>会议纪要关键信息提取准确率达90%以上</li>
+                            <li>支持同时处理最多50人会议</li>
+                            <li>系统响应延迟低于300ms</li>
+                        </ul>
+
+                        <div class="tech-specs">
+                            <h3>系统规格</h3>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <div class="spec-label">语音识别</div>
+                                    <div class="spec-value">自研ASR+Whisper</div>
+                                </div>
+                                <div class="spec-item">
+                                    <div class="spec-label">声纹识别</div>
+                                    <div class="spec-value">SpeakerNet技术</div>
+                                </div>
+                                <div class="spec-item">
+                                    <div class="spec-label">大模型技术</div>
+                                    <div class="spec-value">专业会议模型</div>
+                                </div>
+                                <div class="spec-item">
+                                    <div class="spec-label">部署方式</div>
+                                    <div class="spec-value">云端/本地混合</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="achievement-media">
+                        <img src="../../assets/images/智慧会议.png" alt="智能会议大模型系统">
+                        
+                        <!-- <div class="achievement-video"> -->
+                            <!-- 智能会议大模型系统视频 -->
+                            <!-- 给出用户提示：点击播放按钮后，视频会自动播放 -->
+                            <!-- <video src="../../assets/video/智能会议大模型系统.mp4" controls preload="metadata" poster="../../assets/images/智慧会议.png" width="100%" height="100%" style="object-fit: contain; display: block; position: absolute; top: 0; left: 0;"></video> -->
+                        <!-- </div> -->
+                    </div>
+                </div>
+
+                <!-- <div class="workflow-section">
+                    <h2>系统工作流程</h2>
+                    <p>智能会议系统采用端到端的工作流程，覆盖会议前、会议中和会议后全过程:</p>
+
+                    <div class="workflow-image">
+                        <img src="../../assets/images/workflow-meeting-system.jpg" alt="智能会议系统工作流程" onerror="this.src='../../assets/images/智慧会议.png'">
+                    </div>
+
+                    <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #666; text-align: center;">智能会议系统工作流程示意图</p>
+                </div> -->
+
+                <div class="related-achievements">
+                    <h2>相关研究成果</h2>
+                    <div class="achievements-grid">
+                        <div class="achievement-card">
+                            <img src="../../assets/images/智慧聊天agent系统.png" alt="智慧聊天Agent系统">
+                            <div class="achievement-card-content">
+                                <h3>智慧聊天Agent系统</h3>
+                                <p>自研设计开发板，打通软件与硬件协同功能，通过远端大模型API提升模型语言理解能力，可实现ChatGPT、Qwen与本地服务器接口根据需求配置与切换。</p>
+                                <a href="智慧聊天Agent系统.html" class="btn">查看详情</a>
+                            </div>
+                        </div>
+
+                        <div class="achievement-card">
+                            <img src="../../assets/images/机器人遥操作.png" alt="机器人遥操作系统">
+                            <div class="achievement-card-content">
+                                <h3>机器人遥操作系统</h3>
+                                <p>宇树机器人G1+Vision Pro+灵巧手实现遥抓取，可应用于危险控制场景，并实现末端精细化操作。</p>
+                                <a href="机器人遥操作系统.html" class="btn">查看详情</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>联系我们</h3>
+                    <p>地址：重庆市渝北区两江大道9号-科研楼B205</p>
+                    <p>电话：023-67952817</p>
+                    <p>邮箱：xiangpengli.cs@gmail.com</p>
+                </div>
+                <div class="footer-links">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="../../index.html">首页</a></li>
+                        <li><a href="index.html">科研动态</a></li>
+                        <li><a href="../communication/index.html">开放交流</a></li>
+                        <li><a href="../news/index.html">新闻中心</a></li>
+                        <li><a href="../directions/index.html">研究方向</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 信息安全实验室 (ivis). 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+
+</html>
