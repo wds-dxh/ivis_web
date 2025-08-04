@@ -64,6 +64,22 @@ ivis_web/
 - 所有页面都自适应移动设备，通过媒体查询实现响应式设计。
 - 导航栏在移动端会折叠为汉堡菜单。
 
-## 兼容性
+## 更新页面步骤：
 
-网站兼容所有现代浏览器，包括Chrome、Firefox、Safari、Edge等。为保证最佳体验，建议使用最新版本的浏览器访问。
+### 1. 打开http://cloud-home.dxh-wds.top:20105/upload
+
+### 2. 输入密码（向管理员询问）
+
+<img src="./README.assets/image-20250804183541527.png" alt="image-20250804183541527" style="zoom:50%;" />
+
+### 3. 上传完整的zip格式的压缩包
+
+<img src="./README.assets/image-20250804183600439.png" alt="image-20250804183600439" style="zoom:50%;" />
+
+### 3. 等待更新
+
+<img src="./README.assets/image-20250804183708437.png" alt="image-20250804183708437" style="zoom:33%;" />
+
+### 后续
+
+改为使用github action自动部署
