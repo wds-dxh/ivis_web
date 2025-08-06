@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "title": "科研动态",
+    "description": "科研成果可视化-成果不仅仅停留在论文上"
+  },
+  "projects": [
+    {
+      "id": "smart-chat-agent",
+      "title": "智慧聊天Agent系统",
+      "image": "../../assets/images/智慧聊天agent系统.png",
+      "date": "2023-12-15",
+      "description": "自研设计开发板，打通软件与硬件协同功能，支持ChatGPT、Qwen等大模型接口切换。",
+      "detailPage": "./智慧聊天Agent系统.html"
+    },
+    {
+      "id": "professional-agent",
+      "title": "专业领域咨询Agent系统",
+      "image": "../../assets/images/专业咨询领域agent.png",
+      "date": "2023-11-20",
+      "description": "针对宇树机器人的垂直领域LLM，配合RAG技术实现私有数据库适配。",
+      "detailPage": "./专业领域咨询Agent系统.html"
+    },
+    {
+      "id": "voice-control-system",
+      "title": "基于mcp的语音控制系统",
+      "image": "../../assets/images/基于mcp的语音控制系统.png",
+      "date": "2023-10-25",
+      "description": "通过大模型理解语音指令，实现底盘控制与机械臂控制。",
+      "detailPage": "基于mcp的语音控制系统.html"
+    },
+    {
+      "id": "smart-meeting-system",
+      "title": "智能会议大模型系统",
+      "image": "../../assets/images/智慧会议.png",
+      "date": "2023-09-18",
+      "description": "支持语音会议室预定、声纹识别、会议内容记录和纪要生成。",
+      "detailPage": "智能会议大模型系统.html"
+    },
+    {
+      "id": "robot-teleoperation",
+      "title": "机器人遥操作系统",
+      "image": "../../assets/images/机器人遥操作.png",
+      "date": "2023-08-05",
+      "description": "宇树机器人G1+Vision Pro+灵巧手实现遥抓取，应用于危险控制场景。",
+      "detailPage": "机器人遥操作系统.html"
+    }
+  ]
+}

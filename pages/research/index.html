@@ -6,45 +6,19 @@
     <title>科研动态 - 信息安全实验室 (ivis)</title>
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/navigation.css">
+    <link rel="stylesheet" href="../../css/modules.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
     <style>
-        .research-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+        .research-header {
+            text-align: center;
             margin-bottom: 3rem;
         }
         
-        .research-card {
-            background-color: var(--card-background);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .research-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-        
-        .research-image {
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .research-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        
-        .research-card:hover .research-image img {
-            transform: scale(1.05);
+        .research-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #555;
         }
         
         .video-indicator {
@@ -65,98 +39,11 @@
             margin-right: 5px;
             font-size: 0.8rem;
         }
-        
-        .research-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .research-title {
-            margin-bottom: 0.8rem;
-            font-size: 1.3rem;
-            color: var(--primary-color);
-        }
-        
-        .research-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.8rem;
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        .research-meta .date {
-            display: flex;
-            align-items: center;
-        }
-        
-        .research-meta .date::before {
-            content: '📅';
-            margin-right: 5px;
-        }
-        
-        .research-description {
-            color: #555;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-            line-height: 1.5;
-        }
-        
-        .btn {
-            align-self: flex-start;
-            padding: 0.6rem 1.2rem;
-            background-color: var(--primary-color);
-            color: white;
-            border-radius: 4px;
-            text-decoration: none;
-            transition: background-color 0.3s;
-            font-weight: 500;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .btn:hover {
-            background-color: var(--secondary-color);
-        }
-        
-        .research-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .research-header p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
-            color: #555;
-        }
-        
-        @media (max-width: 768px) {
-            .research-grid {
-                grid-template-columns: 1fr;
-            }
-        }
     </style>
 </head>
 <body>
-    <header>
-        <nav id="main-nav">
-            <div class="nav-container">
-                <div class="logo">
-                    <a href="../../index.html">信息安全实验室 (ivis)</a>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="../../index.html">首页</a></li>
-                    <li><a href="index.html" class="active">科研动态</a></li>
-                    <li><a href="../communication/index.html">开放交流</a></li>
-                    <li><a href="../news/index.html">新闻中心</a></li>
-                    <li><a href="../directions/index.html">研究方向</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+    <!-- 页眉容器 - 将通过组件系统动态加载 -->
+    <div id="header-container"></div>
 
     <main>
         <section class="hero">
@@ -173,112 +60,31 @@
                     <p>信息安全实验室致力于智能网联与信息安全领域的前沿研究，展示我们最新的技术突破与实际应用成果</p>
                 </div>
                 
-                <div class="research-grid">
-                    <div class="research-card">
-                        <div class="research-image">
-                            <img src="../../assets/images/智慧聊天agent系统.png" alt="智慧聊天Agent系统">
-                            <div class="video-indicator">视频演示</div>
-                        </div>
-                        <div class="research-content">
-                            <h3 class="research-title">智慧聊天Agent系统</h3>
-                            <div class="research-meta">
-                                <span class="date">2023-12-15</span>
-                            </div>
-                            <p class="research-description">自研设计开发板，打通软件与硬件协同功能，通过远端大模型API提升模型语言理解能力，可实现ChatGPT、Qwen与本地服务器接口根据需求配置与切换，支持深度思考与快速响应两种模式。</p>
-                            <a href="./智慧聊天Agent系统.html" class="btn">查看详情</a>
-                        </div>
-                    </div>
-                    
-                    <div class="research-card">
-                        <div class="research-image">
-                            <img src="../../assets/images/专业咨询领域agent.png" alt="专业领域咨询Agent系统">
-                            <div class="video-indicator">视频演示</div>
-                        </div>
-                        <div class="research-content">
-                            <h3 class="research-title">专业领域咨询Agent系统</h3>
-                            <div class="research-meta">
-                                <span class="date">2023-11-20</span>
-                            </div>
-                            <p class="research-description">针对宇树机器人，配置自研垂直领域自研LLM或开源API，配合RAG与监督微调技术，实现私有数据库适配，避免隐私泄露。已经协助中电科29所实现"孤岛机"部署。</p>
-                            <a href="./专业领域咨询Agent系统.html" class="btn">查看详情</a>
-                        </div>
-                    </div>
-                    
-                    <div class="research-card">
-                        <div class="research-image">
-                            <img src="../../assets/images/基于mcp的语音控制系统.png" alt="基于mcp的语音控制系统">
-                            <div class="video-indicator">视频演示</div>
-                        </div>
-                        <div class="research-content">
-                            <h3 class="research-title">基于mcp的语音控制系统</h3>
-                            <div class="research-meta">
-                                <span class="date">2023-10-25</span>
-                            </div>
-                            <p class="research-description">通过大模型理解语音指令，实现底盘控制与机械臂控制，自研设计相关控制板根据意图顺序执行控制指令。系统响应迅速，精准识别用户意图并执行相应操作。</p>
-                            <a href="基于mcp的语音控制系统.html" class="btn">查看详情</a>
-                        </div>
-                    </div>
-                    
-                    <div class="research-card">
-                        <div class="research-image">
-                            <img src="../../assets/images/智慧会议.png" alt="智能会议大模型系统">
-                            <!-- <div class="video-indicator">视频演示</div> -->
-                        </div>
-                        <div class="research-content">
-                            <h3 class="research-title">智能会议大模型系统</h3>
-                            <div class="research-meta">
-                                <span class="date">2023-09-18</span>
-                            </div>
-                            <p class="research-description">支持语音会议室预定、与会人员声纹识别，全自动记录会议内容要点整理与会议结论搜集，会后会议纪要和结论的发送。采用麦克风阵列与华为板卡技术，高效准确地管理会议流程。</p>
-                            <a href="智能会议大模型系统.html" class="btn">查看详情</a>
-                        </div>
-                    </div>
-                    
-                    <div class="research-card">
-                        <div class="research-image">
-                            <img src="../../assets/images/机器人遥操作.png" alt="机器人遥操作系统">
-                            <!-- <div class="video-indicator">视频演示</div> -->
-                        </div>
-                        <div class="research-content">
-                            <h3 class="research-title">机器人遥操作系统</h3>
-                            <div class="research-meta">
-                                <span class="date">2023-08-05</span>
-                            </div>
-                            <p class="research-description">宇树机器人G1+Vision Pro+灵巧手实现遥抓取，可应用于危险控制场景，并实现末端精细化操作。未来规划包括机器自主物体识别与抓取(VLA与模仿学习)，以及人形步态的训练。</p>
-                            <a href="机器人遥操作系统.html" class="btn">查看详情</a>
-                        </div>
-                    </div>
+                <div id="research-grid" class="research-grid">
+                    <!-- 内容将通过配置文件动态加载 -->
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <h3>联系我们</h3>
-                    <p>地址：重庆市渝北区两江大道9号-科研楼B205</p>
-                    <p>电话：023-67952817</p>
-                    <p>邮箱：xiangpengli.cs@gmail.com</p>
-                </div>
-                <div class="footer-links">
-                    <h3>快速链接</h3>
-                    <ul>
-                        <li><a href="../../index.html">首页</a></li>
-                        <li><a href="index.html">科研动态</a></li>
-                        <li><a href="../communication/index.html">开放交流</a></li>
-                        <li><a href="../news/index.html">新闻中心</a></li>
-                        <li><a href="../directions/index.html">研究方向</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2023 信息安全实验室 (ivis). 保留所有权利.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- 页脚容器 - 将通过组件系统动态加载 -->
+    <div id="footer-container"></div>
 
+    <!-- 加载组件系统 -->
+    <script src="../../components/component-loader.js"></script>
+    <script src="../../js/components.js"></script>
+    <script src="../../js/config-manager.js"></script>
+    <script src="../../js/content-renderer.js"></script>
     <script src="../../js/main.js"></script>
+    
+    <script>
+        // 页面加载完成后初始化内容
+        document.addEventListener('DOMContentLoaded', function() {
+            // 等待组件加载完成后再加载内容
+            setTimeout(() => {
+                initPageContent('research');
+            }, 100);
+        });
+    </script>
 </body>
-</html> 
+</html>

@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "title": "开放交流",
+    "description": "了解我们的学术会议、讲座和开放日活动"
+  },
+  "categories": [
+    {
+      "id": "upcoming",
+      "name": "即将举行"
+    },
+    {
+      "id": "conferences",
+      "name": "学术会议"
+    },
+    {
+      "id": "lectures",
+      "name": "研讨讲座"
+    },
+    {
+      "id": "past",
+      "name": "往期活动"
+    }
+  ],
+  "events": {
+    "upcoming": [
+      {
+        "id": "zhuogong-weekly",
+        "title": "卓工面对面",
+        "time": "每周三 15:00",
+        "venue": "科研楼B205",
+        "description": "李向鹏副教授主讲，探讨智能体基础与具身智能前沿研究。",
+        "detailPage": "卓工面对面.html"
+      }
+    ],
+    "conferences": [
+      {
+        "id": "fcs-2024",
+        "title": "第七届网络安全前沿国际会议(FCS 2024)",
+        "time": "7月26-28日",
+        "venue": "国际会议厅",
+        "description": "围绕网络安全研究与教育前沿问题展开深入讨论。",
+        "detailPage": "第七届网络安全前沿国际会议(FCS 2024).html"
+      }
+    ],
+    "lectures": [
+      {
+        "id": "zhuogong-series",
+        "title": "卓工面对面",
+        "time": "每周三 15:00",
+        "venue": "科研楼B205",
+        "description": "聚焦智能体基础与具身智能研究前沿。",
+        "detailPage": "卓工面对面.html"
+      }
+    ],
+    "past": [
+      {
+        "id": "ar-hud-lecture",
+        "title": "智能座舱与AR-HUD技术前沿讲座",
+        "time": "4月10日",
+        "venue": "科研楼B205",
+        "description": "探讨智能座舱技术与AR-HUD的最新研究成果。",
+        "detailPage": "#"
+      },
+      {
+        "id": "hardware-security-lecture",
+        "title": "车载硬件加密技术挑战与机遇",
+        "time": "3月27日",
+        "venue": "科研楼B205",
+        "description": "分析TSN指纹加密技术和车载硬件安全模块研究。",
+        "detailPage": "#"
+      }
+    ]
+  },
+  "venue": {
+    "name": "重庆大学国家卓越工程师学院",
+    "address": "重庆市渝北区两江大道9号-科研楼B205",
+    "phone": "023-67952817",
+    "email": "xiangpengli.cs@gmail.com"
+  }
+}

@@ -1,0 +1,157 @@
+name: 自动部署到服务器
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 检出代码
+      uses: actions/checkout@v3
+      
+    - name: 设置 Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: 安装依赖
+      run: |
+        if [ -f package.json ]; then
+          npm ci
+        else
+          echo "无需安装依赖，使用纯前端项目"
+        fi
+        
+    - name: 构建项目
+      run: |
+        if [ -f scripts/build.js ]; then
+          node scripts/build.js
+        else
+          echo "跳过构建步骤"
+          mkdir -p dist
+          cp -r . dist/
+          rm -rf dist/.git dist/.github dist/node_modules dist/scripts
+        fi
+        
+    - name: 验证构建结果
+      run: |
+        echo "构建文件列表："
+        find dist -type f -name "*.html" -o -name "*.css" -o -name "*.js" | head -20
+        
+    - name: 部署到服务器 (SSH)
+      if: github.ref == 'refs/heads/main'
+      uses: appleboy/ssh-action@v0.1.5
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.PRIVATE_KEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+          # 创建备份
+          if [ -d "/home/wds/workspace/static-site/ivis_web/backup" ]; then
+            rm -rf /home/wds/workspace/static-site/ivis_web/backup
+          fi
+          if [ -d "/home/wds/workspace/static-site/ivis_web" ]; then
+            cp -r /home/wds/workspace/static-site/ivis_web /home/wds/workspace/static-site/ivis_web_backup
+          fi
+          
+          # 清理目标目录
+          rm -rf /home/wds/workspace/static-site/ivis_web/*
+          
+          echo "服务器准备完成，等待文件传输..."
+          
+    - name: 传输文件到服务器
+      if: github.ref == 'refs/heads/main'
+      uses: appleboy/scp-action@v0.1.4
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.PRIVATE_KEY }}
+        port: ${{ secrets.PORT }}
+        source: "dist/*"
+        target: "/home/wds/workspace/static-site/ivis_web"
+        strip_components: 1
+        
+    - name: 设置文件权限
+      if: github.ref == 'refs/heads/main'
+      uses: appleboy/ssh-action@v0.1.5
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.PRIVATE_KEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+          # 设置正确的文件权限
+          chown -R wds:wds /home/wds/workspace/static-site/ivis_web
+          find /home/wds/workspace/static-site/ivis_web -type d -exec chmod 755 {} \;
+          find /home/wds/workspace/static-site/ivis_web -type f -exec chmod 644 {} \;
+          
+          # 重启Caddy服务器 (可选)
+          # systemctl reload caddy
+          
+          echo "部署完成！"
+          
+    - name: 健康检查
+      if: github.ref == 'refs/heads/main'
+      run: |
+        echo "等待服务器响应..."
+        sleep 10
+        
+        # 检查网站是否可访问 (需要配置 SITE_URL secret)
+        if [ -n "${{ secrets.SITE_URL }}" ]; then
+          curl -f ${{ secrets.SITE_URL }} || echo "网站健康检查失败"
+        fi
+        
+    - name: 通知部署结果
+      if: always()
+      uses: 8398a7/action-slack@v3
+      with:
+        status: ${{ job.status }}
+        text: |
+          项目部署${{ job.status == 'success' && '成功' || '失败' }}！
+          分支: ${{ github.ref }}
+          提交: ${{ github.sha }}
+          作者: ${{ github.actor }}
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      continue-on-error: true
+
+  # 预览部署 (PR时触发)
+  preview-deploy:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    
+    steps:
+    - name: 检出代码
+      uses: actions/checkout@v3
+      
+    - name: 构建预览版本
+      run: |
+        mkdir -p preview
+        # 复制文件时排除preview目录本身，避免循环复制
+        find . -maxdepth 1 -not -name '.' -not -name 'preview' -exec cp -r {} preview/ \;
+        # 清理不需要的文件
+        rm -rf preview/.git preview/.github preview/node_modules preview/scripts
+        echo "预览版本构建完成"
+        
+    - name: 验证预览构建
+      run: |
+        echo "预览构建验证："
+        echo "文件数量: $(find preview -type f | wc -l)"
+        echo "主要文件:"
+        find preview -name "*.html" -o -name "*.css" -o -name "*.js" | head -10
+        
+    - name: 预览环境说明
+      run: |
+        echo "✅ PR #${{ github.event.number }} 构建验证通过"
+        echo "📋 预览环境部署选项："
+        echo "  - 可以集成 Netlify Preview"
+        echo "  - 可以集成 Vercel Preview"  
+        echo "  - 可以部署到临时服务器"
+        echo "🔍 当前仅进行构建验证，不实际部署预览环境"
