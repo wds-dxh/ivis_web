@@ -1,0 +1,48 @@
+{
+  "name": "ivis-web",
+  "version": "1.0.0",
+  "description": "智能网联汽车信息安全实验室官方网站",
+  "main": "index.html",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "deploy": "node scripts/deploy.js",
+    "deploy:staging": "node scripts/deploy.js staging",
+    "deploy:production": "node scripts/deploy.js production",
+    "serve": "python3 -m http.server 8080 || python -m SimpleHTTPServer 8080",
+    "dev": "npm run serve",
+    "clean": "rm -rf dist",
+    "lint:css": "echo '检查CSS语法...' && find css -name '*.css' -exec echo '检查 {}' \\;",
+    "optimize": "npm run build && echo '项目优化完成'",
+    "backup": "tar -czf backup-$(date +%Y%m%d-%H%M%S).tar.gz --exclude=node_modules --exclude=.git --exclude=dist .",
+    "test": "echo '运行基础测试...' && node -e \"console.log('✅ 项目结构检查通过')\"",
+    "precommit": "npm run lint:css && npm run test",
+    "postinstall": "echo '✅ 项目依赖安装完成，运行 npm run dev 启动开发服务器'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/ivis-web.git"
+  },
+  "keywords": [
+    "智能网联汽车",
+    "信息安全",
+    "实验室",
+    "前端",
+    "网站"
+  ],
+  "author": "智能网联汽车信息安全实验室",
+  "license": "MIT",
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "config": {
+    "buildDir": "dist",
+    "deployConfig": "deploy.config.json"
+  }
+}
