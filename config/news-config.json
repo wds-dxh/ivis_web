@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "title": "新闻中心",
+    "description": "了解我们的最新论文、专利和出版书籍",
+    "lastUpdated": "2024-01-15"
+  },
+  "books": [
+    {
+      "id": "hardware-security-book",
+      "title": "Frontiers in Hardware Security and Trust",
+      "chapterTitle": "Physical Layer Security for mmWave Massive MIMO Communications in 5G Networks",
+      "authors": "Ning Wang, Long Jiao, Jie Tang, and Kai Zeng",
+      "publisher": "IET",
+      "year": "2020",
+      "type": "book-chapter"
+    }
+  ],
+  "publications": {
+    "2024": [
+      {
+        "id": "efficient-group-key-2024",
+        "title": "Efficient Group Key Generation Based on Satellite Cluster State Information for Drone Swarm",
+        "authors": "Ning Wang, Jixuan Duan, Biwen Chen, Shangwei Guo, Tao Xiang and Kai Zeng",
+        "journal": "IEEE Transactions on Information Forensics and Security (TIFS)",
+        "level": "中科院一区, CCF：A"
+      },
+      {
+        "id": "degkm-2024",
+        "title": "DeGKM: Decentralized Group Key Management for Content Push in Integrated Networks",
+        "authors": "Gao Liu, Hao Li, Ning Wang*, Tao Xiang, Yining Liu",
+        "journal": "IEEE Transactions on Dependable and Secure Computing (TDSC)",
+        "level": "通信作者，中科院一区, CCF：A"
+      },
+      {
+        "id": "secure-aggregation-2024",
+        "title": "Efﬁcient and Secure Aggregation Framework for Federated Learning-Based Spectrum Sharing",
+        "authors": "Weiwei Li, Guorong Chen, Xianming Zhang, Ning Wang*",
+        "journal": "IEEE Internet of Things Journal",
+        "level": "通信作者, 中科院一区"
+      }
+    ],
+    "2023": [
+      {
+        "id": "visual-commonsense-2023",
+        "title": "Visual commonsense-aware representation network for video captioning",
+        "authors": "P Zeng, H Zhang, L Gao, X Li, J Qian, HT Shen",
+        "journal": "IEEE Transactions on Neural Networks and Learning Systems",
+        "citations": 20
+      },
+      {
+        "id": "privacy-preserving-ml-2023",
+        "title": "Privacy-Preserving Machine Learning as a Service: Challenges and Opportunities",
+        "authors": "Qiao Zhang, Tao Xiang, Yifei Cai, Zhichao Zhao, Ning Wang*, Hongyi Wu",
+        "journal": "IEEE Network",
+        "level": "中科院一区"
+      }
+    ]
+  },
+  "displaySettings": {
+    "showCitations": true,
+    "showLevel": true,
+    "groupByYear": true,
+    "sortOrder": "desc"
+  }
+}
