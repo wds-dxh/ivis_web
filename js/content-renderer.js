@@ -42,8 +42,8 @@ class ContentRenderer {
             <div class="event-card">
                 <div class="event-card-content">
                     <div class="event-meta">
-                        <div class="event-time">${event.time}</div>
-                        <div class="event-venue">${event.venue}</div>
+                        <div class="event-date">${event.time}</div>
+                        <div class="event-location">${event.venue}</div>
                     </div>
                     <h3>${event.title}</h3>
                     <div class="event-description">
@@ -154,8 +154,7 @@ class ContentRenderer {
             <div class="location-map-container">
                 <div class="map-info">
                     <h3>场地地址</h3>
-                    <p><strong>${venue.name}</strong></p>
-                    <p>${venue.address}</p>
+                    <p><strong>科研楼B205（研讨讲座）：</strong>${venue.address}</p>
                     <div class="contact-info">
                         <p><strong>联系电话：</strong>${venue.phone}</p>
                         <p><strong>联系邮箱：</strong>${venue.email}</p>
@@ -186,8 +185,103 @@ class ContentRenderer {
     }
 
     /**
+     * 渲染新闻中心页面内容
+     * @param {string} containerId - 容器ID
+     */
+    async renderNewsContent(containerId = 'news-container') {
+        try {
+            const config = await this.configManager.loadNewsConfig();
+            if (!config) {
+                console.error('无法加载新闻中心配置');
+                return;
+            }
+
+            const container = document.getElementById(containerId);
+            if (!container) {
+                console.error(`容器 ${containerId} 不存在`);
+                return;
+            }
+
+            // 渲染书籍部分
+            const booksHtml = this.renderBooksSection(config.books);
+            
+            // 渲染论文部分
+            const publicationsHtml = this.renderPublicationsSection(config.publications);
+
+            container.innerHTML = booksHtml + publicationsHtml;
+
+            // 更新页面元信息
+            this.updatePageMeta(config.meta);
+
+        } catch (error) {
+            console.error('渲染新闻中心内容失败:', error);
+        }
+    }
+
+    /**
+     * 渲染书籍部分
+     * @param {Array} books - 书籍数组
+     * @returns {string} HTML字符串
+     */
+    renderBooksSection(books) {
+        if (!books || books.length === 0) return '';
+        
+        const booksHtml = books.map(book => `
+            <div class="publication-item">
+                <div class="publication-title">${book.title}</div>
+                <div class="publication-authors">章节作者: ${book.authors}</div>
+                <div class="publication-journal">章节: "${book.chapterTitle}"</div>
+                <div class="publication-meta">
+                    <span>出版社: ${book.publisher}</span>
+                    <span>年份: ${book.year}</span>
+                </div>
+            </div>
+        `).join('');
+
+        return `
+            <div class="book-section">
+                <h2 class="book-title">出版书籍</h2>
+                ${booksHtml}
+            </div>
+        `;
+    }
+
+    /**
+     * 渲染论文部分
+     * @param {Object} publications - 按年份分组的论文对象
+     * @returns {string} HTML字符串
+     */
+    renderPublicationsSection(publications) {
+        if (!publications) return '';
+        
+        const years = Object.keys(publications).sort((a, b) => b - a); // 按年份降序排列
+        
+        return years.map(year => {
+            const yearPublications = publications[year];
+            const publicationsHtml = yearPublications.map(pub => `
+                <div class="publication-item">
+                    <div class="publication-title">${pub.title}</div>
+                    <div class="publication-authors">${pub.authors}</div>
+                    <div class="publication-journal">${pub.journal}</div>
+                    <div class="publication-meta">
+                        ${pub.level ? `<span>${pub.level}</span>` : ''}
+                        ${pub.citations ? `<span class="publication-citations">引用: ${pub.citations}</span>` : ''}
+                    </div>
+                </div>
+            `).join('');
+
+            return `
+                <div class="publication-list">
+                    <h2 class="publication-year">${year}</h2>
+                    ${publicationsHtml}
+                </div>
+            `;
+        }).join('');
+    }
+
+    /**
      * 初始化页面内容渲染
-     * @param {string} pageType - 页面类型 ('research' 或 'communication')
+     * @param {string} pageType - 页面类型 ('research'、'communication' 或 'news')
      */
     async initPageContent(pageType) {
         switch (pageType) {
@@ -201,7 +295,10 @@ class ContentRenderer {
                     await this.renderCommunicationContent(category);
                 }
                 // 渲染场地信息
-                await this.renderCommunicationContent('location', 'location');
+                await this.renderCommunicationContent('location', 'location-content');
+                break;
+            case 'news':
+                await this.renderNewsContent();
                 break;
             default:
                 console.warn(`未知的页面类型: ${pageType}`);
@@ -217,5 +314,7 @@ window.renderResearchContent = (containerId) =>
     window.contentRenderer.renderResearchContent(containerId);
 window.renderCommunicationContent = (category, containerId) => 
     window.contentRenderer.renderCommunicationContent(category, containerId);
+window.renderNewsContent = (containerId) => 
+    window.contentRenderer.renderNewsContent(containerId);
 window.initPageContent = (pageType) => 
     window.contentRenderer.initPageContent(pageType);
