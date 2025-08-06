@@ -134,7 +134,7 @@ jobs:
     - name: 构建预览版本
       run: |
         mkdir -p preview
-        cp -r . preview/
+        cp -r ./* preview/.
         rm -rf preview/.git preview/.github preview/node_modules
         
     - name: 部署到预览环境
