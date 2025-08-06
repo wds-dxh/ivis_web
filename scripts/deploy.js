@@ -43,9 +43,9 @@ class Deployer {
             "environments": {
                 "production": {
                     "type": "ssh",
-                    "host": "your-server.com",
-                    "username": "deploy",
-                    "remotePath": "/var/www/html",
+                    "host": "your-server-ip",
+                    "username": "wds",
+                    "remotePath": "/home/wds/workspace/static-site/ivis_web",
                     "port": 22,
                     "privateKeyPath": "~/.ssh/id_rsa"
                 },

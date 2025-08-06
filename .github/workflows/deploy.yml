@@ -54,15 +54,15 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           # 创建备份
-          if [ -d "/var/www/html/backup" ]; then
-            rm -rf /var/www/html/backup
+          if [ -d "/home/wds/workspace/static-site/ivis_web/backup" ]; then
+            rm -rf /home/wds/workspace/static-site/ivis_web/backup
           fi
-          if [ -d "/var/www/html" ]; then
-            cp -r /var/www/html /var/www/html/backup
+          if [ -d "/home/wds/workspace/static-site/ivis_web" ]; then
+            cp -r /home/wds/workspace/static-site/ivis_web /home/wds/workspace/static-site/ivis_web_backup
           fi
           
           # 清理目标目录
-          rm -rf /var/www/html/*
+          rm -rf /home/wds/workspace/static-site/ivis_web/*
           
           echo "服务器准备完成，等待文件传输..."
           
@@ -75,7 +75,7 @@ jobs:
         key: ${{ secrets.PRIVATE_KEY }}
         port: ${{ secrets.PORT }}
         source: "dist/*"
-        target: "/var/www/html"
+        target: "/home/wds/workspace/static-site/ivis_web"
         strip_components: 1
         
     - name: 设置文件权限
@@ -88,12 +88,12 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           # 设置正确的文件权限
-          chown -R www-data:www-data /var/www/html
-          find /var/www/html -type d -exec chmod 755 {} \;
-          find /var/www/html -type f -exec chmod 644 {} \;
+          chown -R wds:wds /home/wds/workspace/static-site/ivis_web
+          find /home/wds/workspace/static-site/ivis_web -type d -exec chmod 755 {} \;
+          find /home/wds/workspace/static-site/ivis_web -type f -exec chmod 644 {} \;
           
-          # 重启Web服务器 (可选)
-          # systemctl reload nginx
+          # 重启Caddy服务器 (可选)
+          # systemctl reload caddy
           
           echo "部署完成！"
           
