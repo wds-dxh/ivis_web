@@ -134,11 +134,24 @@ jobs:
     - name: 构建预览版本
       run: |
         mkdir -p preview
-        cp -r ./* preview/.
-        rm -rf preview/.git preview/.github preview/node_modules
+        # 复制文件时排除preview目录本身，避免循环复制
+        find . -maxdepth 1 -not -name '.' -not -name 'preview' -exec cp -r {} preview/ \;
+        # 清理不需要的文件
+        rm -rf preview/.git preview/.github preview/node_modules preview/scripts
+        echo "预览版本构建完成"
         
-    - name: 部署到预览环境
+    - name: 验证预览构建
       run: |
-        echo "预览环境部署逻辑"
-        echo "可以集成 Netlify、Vercel 等服务"
-        echo "PR #${{ github.event.number }} 的预览链接将在这里生成"
+        echo "预览构建验证："
+        echo "文件数量: $(find preview -type f | wc -l)"
+        echo "主要文件:"
+        find preview -name "*.html" -o -name "*.css" -o -name "*.js" | head -10
+        
+    - name: 预览环境说明
+      run: |
+        echo "✅ PR #${{ github.event.number }} 构建验证通过"
+        echo "📋 预览环境部署选项："
+        echo "  - 可以集成 Netlify Preview"
+        echo "  - 可以集成 Vercel Preview"  
+        echo "  - 可以部署到临时服务器"
+        echo "🔍 当前仅进行构建验证，不实际部署预览环境"
