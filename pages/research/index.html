@@ -6,45 +6,19 @@
     <title>科研动态 - 信息安全实验室 (ivis)</title>
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/navigation.css">
+    <link rel="stylesheet" href="../../css/modules.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
     <style>
-        .research-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+        .research-header {
+            text-align: center;
             margin-bottom: 3rem;
         }
         
-        .research-card {
-            background-color: var(--card-background);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .research-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-        
-        .research-image {
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .research-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        
-        .research-card:hover .research-image img {
-            transform: scale(1.05);
+        .research-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #555;
         }
         
         .video-indicator {
@@ -64,79 +38,6 @@
             content: '▶';
             margin-right: 5px;
             font-size: 0.8rem;
-        }
-        
-        .research-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .research-title {
-            margin-bottom: 0.8rem;
-            font-size: 1.3rem;
-            color: var(--primary-color);
-        }
-        
-        .research-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.8rem;
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        .research-meta .date {
-            display: flex;
-            align-items: center;
-        }
-        
-        .research-meta .date::before {
-            content: '📅';
-            margin-right: 5px;
-        }
-        
-        .research-description {
-            color: #555;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-            line-height: 1.5;
-        }
-        
-        .btn {
-            align-self: flex-start;
-            padding: 0.6rem 1.2rem;
-            background-color: var(--primary-color);
-            color: white;
-            border-radius: 4px;
-            text-decoration: none;
-            transition: background-color 0.3s;
-            font-weight: 500;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .btn:hover {
-            background-color: var(--secondary-color);
-        }
-        
-        .research-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .research-header p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
-            color: #555;
-        }
-        
-        @media (max-width: 768px) {
-            .research-grid {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
