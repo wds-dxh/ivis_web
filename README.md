@@ -1,3 +1,9 @@
+<!--
+ * @Author: wds-mac wdsnpshy@163.com
+ * @Date: 2025-08-04 17:03:15
+ * @Description: 
+ * Copyright (c) 2025 by ${wds-mac}, All Rights Reserved. 
+-->
 # 实验室网站
 
 这是一个简洁、现代的实验室网站模板，使用纯HTML、CSS和JavaScript构建，不依赖任何框架。
@@ -63,23 +69,3 @@ ivis_web/
 - 主题色和其他变量定义在`css/style.css`的`:root`选择器中，可以通过修改这些变量轻松更改整个网站的颜色方案。
 - 所有页面都自适应移动设备，通过媒体查询实现响应式设计。
 - 导航栏在移动端会折叠为汉堡菜单。
-
-## 更新页面步骤：
-
-### 1. 打开http://cloud-home.dxh-wds.top:20105/upload
-
-### 2. 输入密码（向管理员询问）
-
-<img src="./README.assets/image-20250804183541527.png" alt="image-20250804183541527" style="zoom:50%;" />
-
-### 3. 上传完整的zip格式的压缩包
-
-<img src="./README.assets/image-20250804183600439.png" alt="image-20250804183600439" style="zoom:50%;" />
-
-### 3. 等待更新
-
-<img src="./README.assets/image-20250804183708437.png" alt="image-20250804183708437" style="zoom:33%;" />
-
-### 后续
-
-改为使用github action自动部署

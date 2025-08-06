@@ -179,22 +179,8 @@
     </style>
 </head>
 <body>
-    <header>
-        <nav id="main-nav">
-            <div class="nav-container">
-                <div class="logo">
-                    <a href="../../index.html">信息安全实验室 (ivis)</a>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="../../index.html">首页</a></li>
-                    <li><a href="../research/index.html">科研动态</a></li>
-                    <li><a href="../communication/index.html">开放交流</a></li>
-                    <li><a href="../news/index.html">新闻中心</a></li>
-                    <li><a href="index.html" class="active">研究方向</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+    <!-- 页眉容器 - 将通过组件系统动态加载 -->
+    <div id="header-container"></div>
 
     <main>
         <section class="hero">
@@ -378,32 +364,12 @@
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <h3>联系我们</h3>
-                    <p>地址：重庆市渝北区两江大道9号-科研楼B205</p>
-                    <p>电话：023-67952817</p>
-                    <p>邮箱：xiangpengli.cs@gmail.com</p>
-                </div>
-                <div class="footer-links">
-                    <h3>快速链接</h3>
-                    <ul>
-                        <li><a href="../../index.html">首页</a></li>
-                        <li><a href="../research/index.html">科研动态</a></li>
-                        <li><a href="../communication/index.html">开放交流</a></li>
-                        <li><a href="../news/index.html">新闻中心</a></li>
-                        <li><a href="index.html">研究方向</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2023 信息安全实验室 (ivis). 保留所有权利.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- 页脚容器 - 将通过组件系统动态加载 -->
+    <div id="footer-container"></div>
 
+    <!-- 加载组件系统 -->
+    <script src="../../components/component-loader.js"></script>
+    <script src="../../js/components.js"></script>
     <script src="../../js/main.js"></script>
     <script>
         // 滚动监听，激活对应的导航项
@@ -448,4 +414,4 @@
         });
     </script>
 </body>
-</html> 
+</html>
