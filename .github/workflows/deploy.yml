@@ -63,20 +63,41 @@ jobs:
           
           # 清理目标目录
           rm -rf /home/wds/workspace/static-site/ivis_web/*
-          
           echo "服务器准备完成，等待文件传输..."
           
-    - name: 传输文件到服务器
+    - name: 使用 rsync 传输文件到服务器
       if: github.ref == 'refs/heads/main'
-      uses: appleboy/scp-action@v0.1.4
+      uses: appleboy/ssh-action@v0.1.5
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.PRIVATE_KEY }}
         port: ${{ secrets.PORT }}
-        source: "dist/*"
-        target: "/home/wds/workspace/static-site/ivis_web"
-        strip_components: 1
+        script: |
+          # 创建临时目录用于接收文件
+          mkdir -p /tmp/ivis_web_deploy
+          
+    - name: 通过 rsync 同步文件
+      if: github.ref == 'refs/heads/main'
+      run: |
+        # 将私钥写入临时文件
+        echo "${{ secrets.PRIVATE_KEY }}" > /tmp/deploy_key
+        chmod 600 /tmp/deploy_key
+        
+        # 使用 rsync 进行高效文件传输
+        rsync -avz --delete \
+          -e "ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no -p ${{ secrets.PORT }}" \
+          --exclude='.git' \
+          --exclude='.github' \
+          --exclude='node_modules' \
+          --exclude='*.log' \
+          --progress \
+          dist/ ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/home/wds/workspace/static-site/ivis_web/
+        
+        # 清理临时密钥文件
+        rm -f /tmp/deploy_key
+        
+        echo "✅ rsync 文件传输完成"
         
     - name: 设置文件权限
       if: github.ref == 'refs/heads/main'
