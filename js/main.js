@@ -4,24 +4,88 @@
  * @Description: 
  * Copyright (c) 2025 by ${wds-mac}, All Rights Reserved. 
  */
-document.addEventListener('DOMContentLoaded', function() {
-    // 初始化导航功能（如果页面已有导航栏）
-    initNavigationFeatures();
-    
-    // 平滑滚动到锚点
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
+
+/**
+ * 确保CSS样式完全加载
+ */
+function ensureStylesLoaded() {
+    return new Promise((resolve) => {
+        const checkStyles = () => {
+            const styleSheets = document.styleSheets;
+            let allLoaded = true;
             
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
+            for (let i = 0; i < styleSheets.length; i++) {
+                try {
+                    const rules = styleSheets[i].cssRules || styleSheets[i].rules;
+                    if (!rules) {
+                        allLoaded = false;
+                        break;
+                    }
+                } catch (e) {
+                    allLoaded = false;
+                    break;
+                }
             }
+            
+            if (allLoaded) {
+                resolve();
+            } else {
+                setTimeout(checkStyles, 50);
+            }
+        };
+        
+        if (document.readyState === 'complete') {
+            setTimeout(checkStyles, 100);
+        } else {
+            window.addEventListener('load', () => setTimeout(checkStyles, 100));
+        }
+    });
+}
+
+/**
+ * 初始化主横幅样式
+ */
+function initMainBannerStyles() {
+    const mainBanner = document.querySelector('.main-banner');
+    if (mainBanner) {
+        // 确保样式正确应用
+        mainBanner.style.background = 'linear-gradient(135deg, rgba(30, 64, 175, 0.95) 0%, rgba(30, 58, 138, 0.9) 50%, rgba(59, 130, 246, 0.85) 100%)';
+        mainBanner.style.color = '#ffffff';
+        mainBanner.style.textAlign = 'center';
+        mainBanner.style.padding = '8rem 2rem';
+        mainBanner.style.marginBottom = '4rem';
+        mainBanner.style.position = 'relative';
+        mainBanner.style.overflow = 'hidden';
+        
+        // 强制重新渲染
+        mainBanner.offsetHeight;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // 确保样式完全加载后再初始化
+    ensureStylesLoaded().then(() => {
+        // 初始化导航功能（如果页面已有导航栏）
+        initNavigationFeatures();
+        
+        // 确保主横幅样式正确应用
+        initMainBannerStyles();
+        
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
     });
 });
@@ -82,3 +146,5 @@ function initNavigationFeatures() {
 
 // 导出函数供组件加载器使用
 window.initNavigationFeatures = initNavigationFeatures;
+window.ensureStylesLoaded = ensureStylesLoaded;
+window.initMainBannerStyles = initMainBannerStyles;
