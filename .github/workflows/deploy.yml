@@ -18,12 +18,12 @@ jobs:
     - name: 设置 Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18'
+        node-version: '22'
         
     - name: 安装依赖
       run: |
         if [ -f package.json ]; then
-          npm ci
+          npm ci   
         else
           echo "无需安装依赖，使用纯前端项目"
         fi
