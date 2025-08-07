@@ -137,6 +137,26 @@ class ComponentLoader {
 
         // 加载完成后初始化导航功能
         this.initNavigation();
+        
+        // 延迟应用蓝色横幅样式修复
+        setTimeout(() => {
+            this.forceStyleReapplication();
+        }, 100);
+    }
+
+    /**
+     * 强制重新应用样式
+     */
+    forceStyleReapplication() {
+        const mainBanner = document.querySelector('.main-banner');
+        if (mainBanner) {
+            // 临时移除并重新添加类名来强制重新渲染
+            const className = mainBanner.className;
+            mainBanner.className = '';
+            // 强制重排
+            mainBanner.offsetHeight;
+            mainBanner.className = className;
+        }
     }
 
     /**
