@@ -13,6 +13,7 @@
     <title>信息安全实验室 (ivis)</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/animations.css">
 </head>
 
 <body>
@@ -20,10 +21,10 @@
     <div id="header-container"></div>
 
     <main>
-        <section class="hero">
+        <section class="main-banner main-banner-animated">
             <div class="container">
-                <h1>信息安全实验室</h1>
-                <p>致力于智能网联汽车安全领域的前沿研究与技术创新</p>
+                <h1 class="animate-fade-in-up">信息安全实验室</h1>
+                <p class="animate-fade-in-up animate-delay-200">致力于智能网联汽车安全领域的前沿研究与技术创新</p>
             </div>
         </section>
 
@@ -37,7 +38,7 @@
                         <!-- <p>我们的实验室由多个研究小组组成，涵盖多个前沿领域，与国内外多家知名机构和汽车企业保持密切合作，致力于为智能网联汽车产业提供全面的安全解决方案。</p> -->
                     </div>
                     <div class="intro-image">
-                        <img src="assets/images/lab-image.png" alt="实验室照片">
+                        <img src="assets/images/lab-image.png" alt="信息安全实验室 - 智能网联汽车安全研究环境与团队工作场景">
                     </div>
                 </div>
             </div>
@@ -47,23 +48,29 @@
             <div class="container">
                 <h2>最新科研动态</h2>
                 <div class="achievements-grid">
-                    <div class="achievement-card">
-                        <img src="assets/images/机器人遥操作.png" alt="成果1">
-                        <h3>机器人遥操作系统</h3>
+                    <div class="achievement-card card-enhanced scroll-animate">
+                        <div class="image-hover-zoom">
+                            <img src="assets/images/机器人遥操作.png" alt="成果1">
+                        </div>
+                        <h3 class="title-underline">机器人遥操作系统</h3>
                         <p>宇树机器人G1+Vision Pro+灵巧手实现遥抓取，可应用于危险控制场景，并实现末端精细化操作。未来规划包括机器自主物体识别与抓取(VLA与模仿学习)，以及人形步态的训练。</p>
-                        <a href="pages/research/机器人遥操作系统.html" class="btn">了解更多</a>
+                        <a href="pages/research/机器人遥操作系统.html" class="btn btn-ripple">了解更多</a>
                     </div>
-                    <div class="achievement-card">
-                        <img src="assets/images/基于mcp的语音控制系统.png" alt="成果2">
-                        <h3>基于mcp的语音控制系统</h3>
+                    <div class="achievement-card card-enhanced scroll-animate animate-delay-100">
+                        <div class="image-hover-zoom">
+                            <img src="assets/images/基于mcp的语音控制系统.png" alt="成果2">
+                        </div>
+                        <h3 class="title-underline">基于mcp的语音控制系统</h3>
                         <p>一套完整的语音交互控制解决方案，能够准确识别用户的语音指令，并实时控制底盘移动与机械臂操作。</p>
-                        <a href="pages/research/基于mcp的语音控制系统.html" class="btn">了解更多</a>
+                        <a href="pages/research/基于mcp的语音控制系统.html" class="btn btn-ripple">了解更多</a>
                     </div>
-                    <div class="achievement-card">
-                        <img src="assets/images/智慧聊天agent系统.png" alt="成果3">
-                        <h3>智慧聊天Agent系统</h3>
+                    <div class="achievement-card card-enhanced scroll-animate animate-delay-200">
+                        <div class="image-hover-zoom">
+                            <img src="assets/images/智慧聊天agent系统.png" alt="成果3">
+                        </div>
+                        <h3 class="title-underline">智慧聊天Agent系统</h3>
                         <p>自研设计开发板，打通软件与硬件协同功能，通过远端大模型API提升模型语言理解能力，可实现ChatGPT、Qwen与本地服务器接口根据需求配置与切换。</p>
-                        <a href="pages/research/智慧聊天Agent系统.html" class="btn">了解更多</a>
+                        <a href="pages/research/智慧聊天Agent系统.html" class="btn btn-ripple">了解更多</a>
                     </div>
                 </div>
             </div>
@@ -77,6 +84,7 @@
     <script src="components/component-loader.js"></script>
     <script src="js/components.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
 </body>
 
 </html>

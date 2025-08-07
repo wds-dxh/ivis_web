@@ -46,22 +46,57 @@
     <div id="header-container"></div>
 
     <main>
-        <section class="hero">
+        <section class="main-banner">
             <div class="container">
                 <h1>科研动态</h1>
                 <p>科研成果可视化-成果不仅仅停留在论文上</p>
             </div>
         </section>
 
-        <section class="research-updates">
+        <section class="recent-achievements">
             <div class="container">
-                <div class="research-header">
-                    <h2>创新研究成果展示</h2>
-                    <p>信息安全实验室致力于智能网联与信息安全领域的前沿研究，展示我们最新的技术突破与实际应用成果</p>
-                </div>
-                
-                <div id="research-grid" class="research-grid">
-                    <!-- 内容将通过配置文件动态加载 -->
+                <h2>创新研究成果展示</h2>
+                <div class="achievements-grid">
+                    <div class="achievement-card card-enhanced scroll-animate">
+                        <div class="image-hover-zoom">
+                            <img src="../../assets/images/机器人遥操作.png" alt="成果1">
+                        </div>
+                        <h3 class="title-underline">机器人遥操作系统</h3>
+                        <p>宇树机器人G1+Vision Pro+灵巧手实现遥抓取，可应用于危险控制场景，并实现末端精细化操作。未来规划包括机器自主物体识别与抓取(VLA与模仿学习)，以及人形步态的训练。</p>
+                        <a href="机器人遥操作系统.html" class="btn btn-ripple">了解更多</a>
+                    </div>
+                    <div class="achievement-card card-enhanced scroll-animate animate-delay-100">
+                        <div class="image-hover-zoom">
+                            <img src="../../assets/images/基于mcp的语音控制系统.png" alt="成果2">
+                        </div>
+                        <h3 class="title-underline">基于mcp的语音控制系统</h3>
+                        <p>一套完整的语音交互控制解决方案，能够准确识别用户的语音指令，并实时控制底盘移动与机械臂操作。</p>
+                        <a href="基于mcp的语音控制系统.html" class="btn btn-ripple">了解更多</a>
+                    </div>
+                    <div class="achievement-card card-enhanced scroll-animate animate-delay-200">
+                        <div class="image-hover-zoom">
+                            <img src="../../assets/images/智慧聊天agent系统.png" alt="成果3">
+                        </div>
+                        <h3 class="title-underline">智慧聊天Agent系统</h3>
+                        <p>自研设计开发板，打通软件与硬件协同功能，通过远端大模型API提升模型语言理解能力，可实现ChatGPT、Qwen与本地服务器接口根据需求配置与切换。</p>
+                        <a href="智慧聊天Agent系统.html" class="btn btn-ripple">了解更多</a>
+                    </div>
+                    <div class="achievement-card card-enhanced scroll-animate animate-delay-300">
+                        <div class="image-hover-zoom">
+                            <img src="../../assets/images/智慧会议.png" alt="成果4">
+                        </div>
+                        <h3 class="title-underline">智能会议大模型系统</h3>
+                        <p>基于大模型的智能会议系统，能够实现会议内容的实时转录、总结和分析，提升会议效率和质量。</p>
+                        <a href="智能会议大模型系统.html" class="btn btn-ripple">了解更多</a>
+                    </div>
+                    <div class="achievement-card card-enhanced scroll-animate animate-delay-400">
+                        <div class="image-hover-zoom">
+                            <img src="../../assets/images/专业咨询领域agent.png" alt="成果5">
+                        </div>
+                        <h3 class="title-underline">专业领域咨询Agent系统</h3>
+                        <p>专门针对特定领域的智能咨询系统，能够提供专业的技术咨询和解决方案建议。</p>
+                        <a href="专业领域咨询Agent系统.html" class="btn btn-ripple">了解更多</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -73,18 +108,7 @@
     <!-- 加载组件系统 -->
     <script src="../../components/component-loader.js"></script>
     <script src="../../js/components.js"></script>
-    <script src="../../js/config-manager.js"></script>
-    <script src="../../js/content-renderer.js"></script>
     <script src="../../js/main.js"></script>
-    
-    <script>
-        // 页面加载完成后初始化内容
-        document.addEventListener('DOMContentLoaded', function() {
-            // 等待组件加载完成后再加载内容
-            setTimeout(() => {
-                initPageContent('research');
-            }, 100);
-        });
-    </script>
+    <script src="../../js/animations.js"></script>
 </body>
 </html>
